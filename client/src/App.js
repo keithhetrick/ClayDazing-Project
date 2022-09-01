@@ -16,7 +16,19 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/products" element={<ProductPage />} />
             <Route path="/products/:id" element={<SingleProductPage />} />
-            <Route path="/login" />
+            <Route path="/register" />
+            <Route path="/account" />
+            <Route path="/account/:id" />
+            <Route path="/account/:id/update" />
+            <Route path="/account/:id/history" />
+            <Route path="/account/admin" />
+            <Route path="/ratings" />
+            <Route path="/wishlist" />
+            <Route path="/search" />
+            <Route path="/shipping" />
+            <Route path="/faq" />
+            <Route path="/affiliates" />
+            <Route path="/about" />
             <Route path="/cart" />
           </Routes>
         </Container>

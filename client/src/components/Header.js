@@ -16,7 +16,22 @@ const Header = () => {
             id="basic-navbar-nav"
           >
             <Nav className="ml-auto">
-              <LinkContainer to="login">
+              <LinkContainer to="/search">
+                <Nav.Link>
+                  <i className="fa-solid fa-magnifying-glass"></i>
+                  Search
+                </Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/about">
+                <Nav.Link>
+                  <i className="fa-solid fa-rainbow"></i>
+                  About
+                </Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/faq">
+                <Nav.Link>FAQ's</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/account">
                 <Nav.Link>
                   <i className="fas fa-user"></i>
                   Sign In
