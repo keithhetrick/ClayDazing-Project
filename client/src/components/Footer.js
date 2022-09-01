@@ -1,10 +1,17 @@
 import React from "react";
+import { Container, Row, Col } from "react-bootstrap";
 
 const Footer = () => {
   return (
-    <div>
-      <Footer>Clay Dazing, LLC</Footer>
-    </div>
+    <footer>
+      <Container>
+        <Row>
+          <Col className="text-center py-3">
+            <p>Copyright &copy; Clay Dazing, LLC</p>
+          </Col>
+        </Row>
+      </Container>
+    </footer>
   );
 };
 
