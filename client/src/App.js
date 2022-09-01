@@ -1,11 +1,16 @@
 import "./App.css";
+import ProductView from "./components/ProductView";
+// import Footer from "./components/Footer";
+import Header from "./components/Header";
+import HomeView from "./components/HomeView";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Test</h1>
-      </header>
+      <Header />
+      <HomeView />
+      <ProductView />
+      {/* <Footer /> */}
     </div>
   );
 }
