@@ -1,24 +1,25 @@
-// import React, { useState, useEffect } from "react";
-// import axios from "axios";
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import { Row, Col, Image, ListGroup, Card, Button } from "react-bootstrap";
 import Ratings from "../Ratings";
-import products from "../products";
+// import products from "../products";
 
 const SingleProductPage = () => {
   const params = useParams();
-  const product = products.find((p) => p._id === params.id);
+  // const product = products.find((p) => p._id === params.id);
+  const [product, setProduct] = useState({});
 
-  // const [products, setProducts] = useState([]);
-
-  // useEffect(() => {
-  //   const fetchProducts = async () => {
-  //     const res = await axios.get("localhost:8000/api/products");
-  //     setProducts(res.data);
-  //   };
-  //   fetchProducts();
-  // }, []);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const res = await axios.get(
+        `http://localhost:8000/api/products/${params.id}`
+      );
+      setProduct(res.data);
+    };
+    fetchProducts();
+    // eslint-disable-next-line
+  }, [params]);
 
   return (
     <div>
