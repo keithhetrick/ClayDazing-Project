@@ -2,21 +2,22 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-const HomePage = () => {
+const AboutPage = () => {
   return (
     <div>
       <Container>
         <Row>
           <Col className="text-center py-3">
-            <h4>Handmade happiness for your ears</h4>
+            <h4>About</h4>
+            <h2>ClayDazing</h2>
           </Col>
           <Link
             variant="secondary"
             size="sm"
             className="btn btn-light my-3"
-            to="/products"
+            to="/"
           >
-            Products Page
+            Home
           </Link>
         </Row>
       </Container>
@@ -24,4 +25,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default AboutPage;

@@ -2,13 +2,13 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-const HomePage = () => {
+const CartPage = () => {
   return (
     <div>
       <Container>
         <Row>
           <Col className="text-center py-3">
-            <h4>Handmade happiness for your ears</h4>
+            <h4>Cart</h4>
           </Col>
           <Link
             variant="secondary"
@@ -16,7 +16,15 @@ const HomePage = () => {
             className="btn btn-light my-3"
             to="/products"
           >
-            Products Page
+            Home
+          </Link>
+          <Link
+            variant="secondary"
+            size="sm"
+            className="btn btn-light my-3"
+            to="/shipping"
+          >
+            check Shipping
           </Link>
         </Row>
       </Container>
@@ -24,4 +32,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default CartPage;

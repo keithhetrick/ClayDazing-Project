@@ -8,13 +8,13 @@ const name_error = {
   },
 };
 
-module.exports.readAllProducts = readAllProducts = (req, res) => {
+readAllProducts = (req, res) => {
   Products.find()
     .then((allProducts) => res.json(allProducts))
     .catch((err) => res.status(400).json(err));
 };
 
-module.exports.createProduct = (req, res) => {
+createProduct = (req, res) => {
   const product = req.body;
   checkName(product.name)
     .then((isNameUnique) => {
@@ -32,7 +32,7 @@ const checkName = (name) => {
   return Products.find({ name }).then((candidates) => candidates.length === 0);
 };
 
-module.exports.findOneProduct = (req, res) => {
+findOneProduct = (req, res) => {
   Products.findOne({ _id: req.params.id })
     .then((foundProduct) => {
       console.log(foundProduct);
@@ -41,7 +41,7 @@ module.exports.findOneProduct = (req, res) => {
     .catch((err) => res.status(400).json(err));
 };
 
-module.exports.updateProduct = (req, res) => {
+updateProduct = (req, res) => {
   const product = req.body;
   checkName(product.name)
     .then((isNameUnique) => {
@@ -59,11 +59,19 @@ module.exports.updateProduct = (req, res) => {
     .catch((err) => res.status(400).json(err));
 };
 
-module.exports.deleteProduct = (req, res) => {
+deleteProduct = (req, res) => {
   Products.deleteOne({ _id: req.params.id })
     .then((deleteProduct) => {
       console.log(deleteProduct);
       this.readAllProducts(req, res);
     })
     .catch((err) => res.status(400).json(err));
+};
+
+module.exports = {
+  readAllProducts,
+  createProduct,
+  findOneProduct,
+  updateProduct,
+  deleteProduct,
 };

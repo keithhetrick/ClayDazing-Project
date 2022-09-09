@@ -2,21 +2,29 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-const HomePage = () => {
+const FAQPage = () => {
   return (
     <div>
       <Container>
         <Row>
           <Col className="text-center py-3">
-            <h4>Handmade happiness for your ears</h4>
+            <h4>FAQ's</h4>
           </Col>
           <Link
             variant="secondary"
             size="sm"
             className="btn btn-light my-3"
-            to="/products"
+            to="/"
           >
-            Products Page
+            Home
+          </Link>
+          <Link
+            variant="secondary"
+            size="sm"
+            className="btn btn-light my-3"
+            to="/affiliates"
+          >
+            see Affiliates
           </Link>
         </Row>
       </Container>
@@ -24,4 +32,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default FAQPage;
