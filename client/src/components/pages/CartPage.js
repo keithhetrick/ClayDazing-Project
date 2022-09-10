@@ -1,8 +1,34 @@
-import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useParams } from "react-router-dom";
+import {
+  Container,
+  Row,
+  Col,
+  ListGroup,
+  Image,
+  Form,
+  Button,
+  Card,
+} from "react-bootstrap";
+import Message from "../Message";
+import { addToCart } from "../../actions/cartActions";
 
-const CartPage = () => {
+const CartPage = ({ id, location, history }) => {
+  const params = useParams();
+  const productId = params.id;
+
+  const qty = location.search ? Number(location.search.split("=")[1]) : 1;
+  console.log(qty);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (productId) {
+      dispatch(addToCart(productId, qty));
+    }
+  }, [dispatch, productId, qty]);
+
   return (
     <div>
       <Container>

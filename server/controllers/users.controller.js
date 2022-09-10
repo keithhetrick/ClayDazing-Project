@@ -1,42 +1,26 @@
-const Users = require("../models/users.model");
+const User = require("../models/users.model");
+const asyncHandler = require("express-async-handler");
 
-addUser = (req, res) => {
-  console.log(body);
-  Users.create(req.body)
-    .then((newUser) => res.json(newUser))
-    .catch((err) => res.status(400).json(err));
-};
+//@desc  Auth user & get token
+//@route  POST /api/users/login
+//@access  Public
+const authUser = asyncHandler(async (req, res) => {
+  const { email, password } = req.body;
 
-readAllUsers = (req, res) => {
-  Users.find()
-    .then((allUsers) => res.json(allUsers))
-    .catch((err) => res.status(400).json(err));
-};
+  const user = await User.findOne({ email });
 
-deleteUser = (req, res) => {
-  Users.deleteOne({ _id: req.params.id })
-    .then((deletedUser) => {
-      res.json(deletedUser);
-      console.log(deletedUser);
-    })
-    .catch((err) => err.status(400).json(err));
-};
+  if (user && (await user.matchPassword(password))) {
+    res.json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      isAdmin: user.isAdmin,
+      token: null,
+    });
+  } else {
+    res.status(401);
+    throw new Error("Invalid email or password");
+  }
+});
 
-updatePlayer = (req, res) => {
-  Player.findOneAndUpdate({ _id: req.params.id }, req.body, {
-    new: true,
-    runValidators: true,
-  })
-    .then((updatedPlayer) => {
-      res.json(updatedPlayer);
-      console.log(updatedPlayer);
-    })
-    .catch((err) => res.status(400).json(err));
-};
-
-module.exports = {
-  addUser,
-  findAllUsers,
-  deleteUser,
-  updateUser,
-};
+module.exports = { authUser };

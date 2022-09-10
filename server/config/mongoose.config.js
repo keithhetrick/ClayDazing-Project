@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const connectDB = mongoose
+mongoose
   .connect("mongodb://localhost/clay-dazing", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -9,5 +9,3 @@ const connectDB = mongoose
   .catch((err) =>
     console.log("Something went wrong when connecting to the database", err)
   );
-
-module.exports = connectDB;
