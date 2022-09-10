@@ -37,7 +37,8 @@ function App() {
             <Route path="/faq" element={<FAQPage />} />
             <Route path="/affiliates" element={<AffiliatesPage />} />
             <Route path="/about" element={<AboutPage />} />
-            <Route path="/cart/" element={<CartPage />} />
+            <Route path="/cart" element={<CartPage />} />
+            <Route path="/cart/:id/:qty" element={<CartPage />} />
           </Routes>
         </Container>
       </main>

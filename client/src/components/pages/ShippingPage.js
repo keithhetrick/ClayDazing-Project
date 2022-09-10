@@ -14,7 +14,7 @@ const ShippingPage = () => {
             variant="secondary"
             size="sm"
             className="btn btn-light my-3"
-            to="/account"
+            to="/"
           >
             Home
           </Link>

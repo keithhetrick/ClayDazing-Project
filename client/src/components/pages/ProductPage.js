@@ -17,13 +17,11 @@ const ProductPage = () => {
     dispatch(listProducts());
   }, [dispatch]);
 
-  // const products = [];
-
   return (
     <main>
-      {/* <Link className="btn btn-light my-3" to="/">
+      <Link className=" btn btn-light my-3" to="/">
         Go Back
-      </Link> */}
+      </Link>
       <h1 className="text-center py-3">Latest Products</h1>
       {loading ? (
         <Loader />
@@ -38,13 +36,6 @@ const ProductPage = () => {
           ))}
         </Row>
       )}
-      <Row>
-        {products.map((product) => (
-          <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-            <Product product={product} />
-          </Col>
-        ))}
-      </Row>
     </main>
   );
 };

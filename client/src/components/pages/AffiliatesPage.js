@@ -2,33 +2,71 @@ import React from "react";
 import { Container, Row, Col, ListGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
+const openCallieDanielleShop = (e) => {
+  const URL = "https://calliedanielleshop.com/shop/rainbow-earrings";
+  window.open(URL);
+};
+const openLovelyDaffodilsShop = (e) => {
+  const URL = "https://lovely-daffodils.myshopify.com/";
+  window.open(URL);
+};
+
 const AffiliatesPage = () => {
   return (
     <div>
+      <Link variant="secondary" size="sm" className="btn btn-light my-3" to="/">
+        Home
+      </Link>
       <Container>
         <Row>
           <Col className="text-center py-3">
-            <h4>Affiliates</h4>
+            <h2>Affiliates</h2>
           </Col>
         </Row>
-        <Col md={7}>
-          <ListGroup variant="flush">
-            <ListGroup.Item>
-              <h2>Test</h2>
-            </ListGroup.Item>
-            <ListGroup.Item></ListGroup.Item>
-            <ListGroup.Item>Price: $Test 2</ListGroup.Item>
-            <ListGroup.Item>Description: $Test 3</ListGroup.Item>
-          </ListGroup>
-        </Col>
-        <Link
-          variant="secondary"
-          size="sm"
-          className="btn btn-light my-3"
-          to="/"
-        >
-          Home
-        </Link>
+        <Row>
+          <Col sm={12} md={6} lg={4} xl={3}>
+            <ListGroup variant="flush">
+              <ListGroup.Item>
+                <h4>Callie Danielle</h4>
+              </ListGroup.Item>
+              <button onClick={openCallieDanielleShop}>Callie Danielle</button>
+              <ListGroup.Item>Price: Test 1</ListGroup.Item>
+              <ListGroup.Item>Description: Test 1</ListGroup.Item>
+            </ListGroup>
+          </Col>
+          <Col>
+            <ListGroup variant="flush">
+              <ListGroup.Item>
+                <h4>Lovely Daffodils</h4>
+              </ListGroup.Item>
+              <button onClick={openLovelyDaffodilsShop}>
+                Lovely Daffodils
+              </button>
+              <ListGroup.Item>Price: Test 2</ListGroup.Item>
+              <ListGroup.Item>Description: Test 2</ListGroup.Item>
+            </ListGroup>
+          </Col>
+          <Col>
+            <ListGroup variant="flush">
+              <ListGroup.Item>
+                <h2>Affiliate 3</h2>
+              </ListGroup.Item>
+              <ListGroup.Item></ListGroup.Item>
+              <ListGroup.Item>Price: Test 3</ListGroup.Item>
+              <ListGroup.Item>Description: Test 3</ListGroup.Item>
+            </ListGroup>
+          </Col>
+          <Col>
+            <ListGroup variant="flush">
+              <ListGroup.Item>
+                <h2>Affiliate 4</h2>
+              </ListGroup.Item>
+              <ListGroup.Item></ListGroup.Item>
+              <ListGroup.Item>Price: Test 4</ListGroup.Item>
+              <ListGroup.Item>Description: Test 4</ListGroup.Item>
+            </ListGroup>
+          </Col>
+        </Row>
       </Container>
     </div>
   );

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Row,
@@ -14,10 +14,10 @@ import Ratings from "../Ratings";
 import Message from "../Message";
 import Loader from "../Loader";
 import { listProductDetails } from "../../actions/productActions";
-import { addToCart } from "../../actions/cartActions";
 
-const SingleProductPage = ({ history }) => {
-  const params = useParams();
+const SingleProductPage = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
   const [qty, setQty] = useState(1);
 
   const dispatch = useDispatch();
@@ -26,27 +26,14 @@ const SingleProductPage = ({ history }) => {
   const { loading, error, product } = productDetails;
 
   useEffect(() => {
-    dispatch(listProductDetails(params.id));
-  }, [dispatch, params, product]);
-
-  // const addToCartHandler = () => {
-  //   dispatch(addToCart(product._id, qty));
-  //   history.push("/cart");
-  // };
+    dispatch(listProductDetails(id));
+  }, [dispatch, id]);
 
   const addToCartHandler = () => {
-    history.push(`/cart/${params.id}?qty=${qty}`);
+    console.log(navigate(`/cart/${id}?qty=${qty}`));
+    navigate(`/cart/${id}?qty=${qty}`);
+    // navigate("/cart");
   };
-
-  // const addToCartHandler = (e) => {
-  //   dispatch(addToCart(product._id, Number(e.target.value)));
-  //   history.push("/cart");
-  // };
-
-  // const addToCartHandler = () => {
-  //   dispatch(addToCart(product._id, qty));
-  //   props.history.push("/cart");
-  // };
 
   return (
     <div>
@@ -127,7 +114,7 @@ const SingleProductPage = ({ history }) => {
                       type="button"
                       disabled={product.countInStock === 0}
                     >
-                      Add To Cart
+                      {product.countInStock > 0 ? "In Stock" : " Out Of Stock"}
                     </Button>
                   </Row>
                 </ListGroup.Item>
