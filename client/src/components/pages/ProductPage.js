@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { listProducts } from "../../actions/productActions";
 import Product from "../Product";
 import Message from "../Message";
@@ -20,6 +21,9 @@ const ProductPage = () => {
 
   return (
     <main>
+      {/* <Link className="btn btn-light my-3" to="/">
+        Go Back
+      </Link> */}
       <h1 className="text-center py-3">Latest Products</h1>
       {loading ? (
         <Loader />

@@ -5,19 +5,14 @@ import { Link } from "react-router-dom";
 const FAQPage = () => {
   return (
     <div>
-      <Container>
+      <Link className="btn btn-light my-3" to="/">
+        Home
+      </Link>
+      <Container style={{ marginTop: "-10px" }}>
         <Row>
           <Col className="text-center py-3">
             <h4>FAQ's</h4>
           </Col>
-          <Link
-            variant="secondary"
-            size="sm"
-            className="btn btn-light my-3"
-            to="/"
-          >
-            Home
-          </Link>
           <Link
             variant="secondary"
             size="sm"
