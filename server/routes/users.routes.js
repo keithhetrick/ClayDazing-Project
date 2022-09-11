@@ -1,11 +1,13 @@
 // const UsersController = require("../controllers/products.controller");
-const { authUser } = require("../controllers/users.controller");
+const UsersController = require("../controllers/users.controller");
 
 module.exports = (app) => {
-  app.post("/api/users/login", authUser);
-  app.get("/api/users/login", authUser);
+  // app.post("/api/users/login", UsersController.authUsers);
+  // app.get("/api/users/login", UsersController.authUsers);
+  app.get("/api/users/login", UsersController.getUsers);
+  app.get("/api/users/login/:id", UsersController.getUserById);
+  app.post("/api/users/login", UsersController.addUsers);
+  app.put("/api/users/login/:id", UsersController.editUser);
+  app.delete("/api/users/login/:id", UsersController.deleteUser);
   // app.get("/api/products", ProductsController.getProducts);
-  // app.get("/api/products/:id", ProductsController.getProductById);
-  // app.put("/api/users/:id", UsersController.updateProduct);
-  // app.delete("/api/users/:id", UsersController.deleteProduct);
 };

@@ -26,7 +26,6 @@ const CartPage = () => {
 
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
-
   console.log(cartItems);
 
   useEffect(() => {
@@ -42,7 +41,7 @@ const CartPage = () => {
 
   const checkoutHandler = () => {
     console.log("checkout");
-    navigate("/login?redirect=shipping");
+    navigate("/users/login?redirect=shipping");
   };
 
   return (
@@ -114,7 +113,7 @@ const CartPage = () => {
                   Subtotal (
                   {cartItems.reduce(
                     (accumulator, item) => accumulator + item.qty,
-                    0
+                    ""
                   )}
                   ) items
                 </h2>

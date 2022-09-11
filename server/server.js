@@ -1,40 +1,29 @@
 const express = require("express");
 const app = express();
+const dotenv = require("dotenv");
 const cors = require("cors");
 const PORT = process.env.PORT || 8000;
-const dotenv = require("dotenv");
-const { notFound, errorHandler } = require("./middleware/errorMiddleware");
-
-dotenv.config();
-
-app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+require("./config/mongoose.config");
+app.use(express.json(), express.urlencoded({ extended: true }));
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+  })
+);
+// const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 
 app.use((req, res, next) => {
   console.log(`Hello from PORT ${PORT} `);
   next();
 });
 
-require("./config/mongoose.config");
-require("./routes/products.routes", "./routes/users.routes")(app);
-// require("./routes/users.routes")(app);
+// app.use(notFound);
+// app.use(errorHandler);
 
-// app.get("/", (req, res) => {
-//   res.send("API is running...");
-// });
+require("./routes/products.routes")(app);
+require("./routes/users.routes")(app);
 
-// app.get("/api/products/", (req, res) => {
-//   res.json(products);
-// });
-
-// app.get("/api/products/:id", (req, res) => {
-//   const product = products.find((p) => p._id === req.params.id);
-//   res.json(product);
-// });
-
-app.use(notFound);
-app.use(errorHandler);
+dotenv.config();
 
 app.listen(PORT, () =>
   console.log(`Server is running in ${process.env.NODE_ENV} on PORT ${PORT}`)

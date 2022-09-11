@@ -43,7 +43,7 @@ const Header = () => {
               <LinkContainer to="/faq">
                 <Nav.Link>FAQ's</Nav.Link>
               </LinkContainer>
-              <LinkContainer to="/users">
+              <LinkContainer to="/login">
                 <Nav.Link>
                   <i className="fas fa-user"></i>
                   Sign In

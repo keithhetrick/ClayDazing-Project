@@ -14,6 +14,7 @@ import Ratings from "../Ratings";
 import Message from "../Message";
 import Loader from "../Loader";
 import { listProductDetails } from "../../actions/productActions";
+import { addToCart } from "../../actions/cartActions";
 
 const SingleProductPage = () => {
   const { id } = useParams();
@@ -30,9 +31,10 @@ const SingleProductPage = () => {
   }, [dispatch, id]);
 
   const addToCartHandler = () => {
-    console.log(navigate(`/cart/${id}?qty=${qty}`));
-    navigate(`/cart/${id}?qty=${qty}`);
-    // navigate("/cart");
+    // console.log(navigate(`/cart/${id}?qty=${qty}`));
+    dispatch(addToCart(id, qty));
+    console.log(dispatch(addToCart(id, qty)));
+    navigate("/cart");
   };
 
   return (

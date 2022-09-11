@@ -9,10 +9,10 @@ import AboutPage from "./components/pages/AboutPage";
 import AffiliatesPage from "./components/pages/AffiliatesPage";
 import SingleProductPage from "./components/pages/SingleProductPage";
 import CartPage from "./components/pages/CartPage";
-import UserPage from "./components/pages/UserPage";
 import SearchPage from "./components/pages/SearchPage";
 import ShippingPage from "./components/pages/ShippingPage";
 import RegisterPage from "./components/pages/RegisterPage";
+import LoginPage from "./components/pages/LoginPage";
 
 function App() {
   return (
@@ -24,8 +24,8 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/products" element={<ProductPage />} />
             <Route path="/products/:id" element={<SingleProductPage />} />
+            <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
-            <Route path="/users" element={<UserPage />} />
             <Route path="/users/:id" />
             <Route path="/users/:id/update" />
             <Route path="/users/:id/history" />
