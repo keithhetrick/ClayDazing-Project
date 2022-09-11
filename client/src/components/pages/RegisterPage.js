@@ -1,104 +1,99 @@
-import React from "react";
-import { useReducer } from "react";
-import { Container, Row, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
-
-const ACTION = {
-  SET_FIRSTNAME: "setFirstName",
-  SET_LASTNAME: "setLastName",
-  SET_EMAIL: "setEmail",
-};
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "setFirstName":
-      return { ...state, firstName: action.payload };
-    case "setLastName":
-      return { ...state, lastName: action.payload };
-    case "setEmail":
-      return { ...state, email: action.payload };
-    default:
-      return state;
-  }
-};
+import React, { useState, useEffect } from "react";
+import { Form, Button, Row, Col } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import FormContainer from "../FormContainer";
+import Loader from "../Loader";
+import Message from "../Message";
+import { register } from "../../actions/userActions";
 
 const RegisterPage = () => {
-  const [state, dispatch] = useReducer(reducer, {
-    firstName: "",
-    lastName: "",
-    email: "",
-  });
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [message, setMessage] = useState(null);
+  const location = useLocation("");
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+
+  const userRegister = useSelector((state) => state.userRegister);
+  const { loading, error, userInfo } = userRegister;
+
+  const redirect = location.search ? location.search.split("=")[1] : "/";
+
+  useEffect(() => {
+    if (userInfo) {
+      navigate(redirect);
+    }
+  }, [navigate, userInfo, redirect]);
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    if (password !== confirmPassword) {
+      setMessage("Passwords do not match");
+    } else {
+      dispatch(register(name, email, password));
+    }
+  };
 
   return (
-    <div>
-      <Container>
+    <FormContainer>
+      <h1>Sign Up</h1>
+      {message && <Message variant="danger">{message}</Message>}
+      {error && <Message variant="danger">{error}</Message>}
+      {loading && <Loader />}
+      <Form onSubmit={submitHandler}>
+        <Form.Group controlId="name">
+          <Form.Label>Name</Form.Label>
+          <Form.Control
+            type="name"
+            placeholder="Enter name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          ></Form.Control>
+        </Form.Group>
+        <Form.Group controlId="email" style={{ marginTop: "10px" }}>
+          <Form.Label>Email Address</Form.Label>
+          <Form.Control
+            type="email"
+            placeholder="Enter email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          ></Form.Control>
+        </Form.Group>
+        <Form.Group controlId="password" style={{ marginTop: "10px" }}>
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Enter password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          ></Form.Control>
+        </Form.Group>
+        <Form.Group controlId="confirmPassword" style={{ marginTop: "10px" }}>
+          <Form.Label>Confirm Password</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Confirm password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          ></Form.Control>
+        </Form.Group>
+        <Button type="submit" variant="primary" style={{ marginTop: "10px" }}>
+          Register
+        </Button>
+      </Form>
+      <Row className="py-3">
         <Col>
-          <form>
-            <div className="form-align">
-              <label className="inputHeader">First Name</label>
-              <input
-                className="inputText"
-                type="text"
-                value={state.firstName}
-                onChange={(e) =>
-                  dispatch({
-                    type: ACTION.SET_FIRSTNAME,
-                    payload: e.target.value,
-                  })
-                }
-              />
-            </div>
-            {state.firstName && state.firstName.length < 2 ? (
-              <p>First Name must be at least 2 characters</p>
-            ) : null}
-            <div className="form-align">
-              <label className="inputHeader">Last Name</label>
-              <input
-                className="inputText"
-                type="text"
-                value={state.lastName}
-                onChange={(e) =>
-                  dispatch({
-                    type: ACTION.SET_LASTNAME,
-                    payload: e.target.value,
-                  })
-                }
-              />
-            </div>
-            {state.lastName && state.lastName.length < 2 ? (
-              <p>Last Name must be at least 2 characters</p>
-            ) : null}
-            <div className="form-align">
-              <label className="inputHeader">Email</label>
-              <input
-                className="inputText"
-                type="email"
-                value={state.email}
-                onChange={(e) =>
-                  dispatch({ type: ACTION.SET_EMAIL, payload: e.target.value })
-                }
-              />
-            </div>
-            {state.email && state.email.length < 2 ? (
-              <p>Email must be at least 2 characters</p>
-            ) : null}
-          </form>
-          <button>Create Account</button>
-        </Col>
-      </Container>
-      <Container>
-        <Row>
-          <Link
-            variant="secondary"
-            size="sm"
-            className="btn btn-light my-3"
-            to="/"
-          >
-            Home
+          Have an Account?{" "}
+          <Link to={redirect ? `/login?redirect=${redirect}` : "/login"}>
+            Login
           </Link>
-        </Row>
-      </Container>
-    </div>
+        </Col>
+      </Row>
+    </FormContainer>
   );
 };
 

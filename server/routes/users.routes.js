@@ -4,8 +4,8 @@ module.exports = (app) => {
   // app.post("/api/users/login", UsersController.authUsers);
   // app.get("/api/users/login", UsersController.authUsers);
   app.get("/api/users/login", UsersController.getUsers);
-  app.get("/api/users/login/:id", UsersController.getUserById);
-  app.post("/api/users/login", UsersController.addUsers);
-  app.put("/api/users/login/:id", UsersController.editUser);
+  app.post("/api/users", UsersController.addUsers);
+  app.get("/api/users/:id", UsersController.getUserById);
+  app.put("/api/users/profile/:id", UsersController.editUser);
   app.delete("/api/users/login/:id", UsersController.deleteUser);
 };

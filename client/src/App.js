@@ -13,6 +13,9 @@ import SearchPage from "./components/pages/SearchPage";
 import ShippingPage from "./components/pages/ShippingPage";
 import RegisterPage from "./components/pages/RegisterPage";
 import LoginPage from "./components/pages/LoginPage";
+import ProfilePage from "./components/pages/ProfilePage";
+import PaymentPage from "./components/pages/PaymentPage";
+import PlaceOrderPage from "./components/pages/PlaceOrderPage";
 
 function App() {
   return (
@@ -25,6 +28,7 @@ function App() {
             <Route path="/products" element={<ProductPage />} />
             <Route path="/products/:id" element={<SingleProductPage />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/users/:id" />
             <Route path="/users/:id/update" />
@@ -39,6 +43,8 @@ function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/cart" element={<CartPage />} />
             <Route path="/cart/:id/:qty" element={<CartPage />} />
+            <Route path="/payment" element={<PaymentPage />} />
+            <Route path="/placeorder" element={<PlaceOrderPage />} />
           </Routes>
         </Container>
       </main>

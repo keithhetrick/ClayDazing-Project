@@ -113,7 +113,7 @@ const CartPage = () => {
                   Subtotal (
                   {cartItems.reduce(
                     (accumulator, item) => accumulator + item.qty,
-                    ""
+                    0
                   )}
                   ) items
                 </h2>
