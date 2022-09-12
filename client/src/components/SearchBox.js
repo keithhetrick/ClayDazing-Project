@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Form, Button, InputGroup } from "react-bootstrap";
-// import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const SearchBox = () => {
@@ -18,9 +17,6 @@ const SearchBox = () => {
 
   return (
     <div>
-      {/* <Link className=" btn btn-light my-3" to="/">
-        Go Back
-      </Link> */}
       <Form className="d-flex me-auto" onSubmit={submitHandler}>
         <InputGroup>
           <Form.Control

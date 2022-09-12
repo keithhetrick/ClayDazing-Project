@@ -22,7 +22,7 @@ const Header = () => {
             <Nav.Link>
               <Image
                 className="d-inline-block align-top"
-                src="https://images.squarespace-cdn.com/content/v1/5fdaad402c1ded02b3775ccf/1622139469757-RAKFB263SK7V4WQR18DY/Copy%2Bof%2B%255BOriginal%2Bsize%255D%2BCream%2Band%2BBrown%2BFood%2BVintage%2BLogo.jpg?format=1500w"
+                src="images/clay-dazing-logo.png"
                 alt="Clay-Dazing-Logo"
                 width="50"
                 height="50"

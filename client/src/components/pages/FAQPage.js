@@ -32,24 +32,28 @@ const FAQPage = () => {
           <Col className="text-center py-3">
             <h4>FAQ's</h4>
           </Col>
-          <div class="demo__content">
-            <h2 class="demo__heading">What do you need help with?</h2>
-            <div class="demo__elems">
-              <div class="demo__elem demo__elem-1">With advertising online</div>
-              <div class="demo__elem demo__elem-2">With a website</div>
-              <div class="demo__elem demo__elem-3">I need help with both</div>
-              <span class="demo__hover demo__hover-1"></span>
-              <span class="demo__hover demo__hover-2"></span>
-              <span class="demo__hover demo__hover-3"></span>
-              <div class="demo__highlighter">
-                <div class="demo__elems">
-                  <div class="demo__elem">With advertising online</div>
-                  <div class="demo__elem">With a website</div>
-                  <div class="demo__elem">I need help with both</div>
+          {/* <div className="demo__content">
+            <h2 className="demo__heading">What do you need help with?</h2>
+            <div className="demo__elems">
+              <div className="demo__elem demo__elem-1">
+                With advertising online
+              </div>
+              <div className="demo__elem demo__elem-2">With a website</div>
+              <div className="demo__elem demo__elem-3">
+                I need help with both
+              </div>
+              <span className="demo__hover demo__hover-1"></span>
+              <span className="demo__hover demo__hover-2"></span>
+              <span className="demo__hover demo__hover-3"></span>
+              <div className="demo__highlighter">
+                <div className="demo__elems">
+                  <div className="demo__elem">With advertising online</div>
+                  <div className="demo__elem">With a website</div>
+                  <div className="demo__elem">I need help with both</div>
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
           <Button
             className="btn btn-light my-3"
             onClick={() => setOpen(!open)}

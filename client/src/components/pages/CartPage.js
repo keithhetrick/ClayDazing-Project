@@ -155,15 +155,6 @@ const CartPage = () => {
       >
         Go Back
       </Link>
-      {/* <br /> */}
-      {/* <Link
-        variant="secondary"
-        size="sm"
-        className="btn btn-light my-3"
-        to="/shipping"
-      >
-        check Shipping
-      </Link> */}
     </div>
   );
 };

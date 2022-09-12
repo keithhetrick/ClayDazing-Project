@@ -39,12 +39,6 @@ const addProduct = asyncHandler(async (req, res) => {
   }
 });
 
-// const addProduct = (req, res) => {
-//   Products.create(req.body)
-//     .then((newProduct) => res.json(newProduct))
-//     .catch((err) => res.status(400).json(err));
-// };
-
 const editProduct = (req, res) => {
   Products.updateOne({ _id: req.params.id }, req.body, {
     new: true,
@@ -68,21 +62,6 @@ const createProductReview = (req, res) => {
     })
     .catch((err) => res.status(400).json(err));
 };
-
-//@desc  Get top rated products
-//@route  GET /api/products/top
-//@access  Public
-// const createProductReview = (req, res) => {
-//   Products.updateOne({ _id: req.params.id }, req.body, {
-//     new: true,
-//     // runValidators: true,
-//   })
-//     .then((editProduct) => {
-//       res.json(editProduct);
-//       console.log(editProduct);
-//     })
-//     .catch((err) => res.status(400).json(err));
-// };
 
 const getTopProducts = asyncHandler(async (req, res) => {
   const products = await Products.find({}).sort({ rating: -1 }).limit(3);

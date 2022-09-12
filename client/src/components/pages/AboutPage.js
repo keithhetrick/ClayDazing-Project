@@ -11,7 +11,6 @@ const AboutPage = () => {
       <Container style={{ marginTop: "-10px", textAlign: "center" }}>
         <Row>
           <Col className="text-center py-3">
-            {/* <h6>About</h6> */}
             <h2>About Me</h2>
           </Col>
         </Row>

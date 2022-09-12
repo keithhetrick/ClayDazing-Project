@@ -37,8 +37,7 @@ const PlaceOrderPage = () => {
     if (success) {
       navigate(`/order/${order._id}`);
     }
-    // eslint-disable-next-line
-  }, [navigate, success]);
+  }, [navigate, success, order._id]);
 
   const placeOrderHandler = () => {
     console.log("order");

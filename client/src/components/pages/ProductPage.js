@@ -41,11 +41,6 @@ const ProductPage = () => {
               Handmade happiness for your ears.
             </h6>
           </Col>
-          {/* <Col className="text-center py-3" md={3}>
-            <h6 style={{ fontStyle: "italic" }}>
-              Handmade happiness for your ears.
-            </h6>
-          </Col> */}
         </Row>
       </Container>
       <h1 className="text-center py-3">Latest Products</h1>

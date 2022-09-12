@@ -78,39 +78,6 @@ const getAllOrders = asyncHandler(async (req, res) => {
   res.json(orders);
 });
 
-//@desc  Fetch single product
-//@route  GET /api/products/:id
-//@access  Public
-
-// const getProductById = asyncHandler(async (req, res) => {
-//   const product = await Products.findById(req.params.id);
-
-//   if (product) {
-//     res.json(product);
-//   } else {
-//     res.status(404);
-//     throw new Error("Product not found");
-//   }
-// });
-
-// const addProduct = (req, res) => {
-//   Products.create(req.body)
-//     .then((newProduct) => res.json(newProduct))
-//     .catch((err) => res.status(400).json(err));
-// };
-
-// const editProduct = (req, res) => {
-//   Products.updateOne({ _id: req.params.id }, req.body, {
-//     new: true,
-//     runValidators: true,
-//   })
-//     .then((editProduct) => {
-//       res.json(editProduct);
-//       console.log(editProduct);
-//     })
-//     .catch((err) => res.status(400).json(err));
-// };
-
 module.exports = {
   addOrderItems,
   getOrderById,
