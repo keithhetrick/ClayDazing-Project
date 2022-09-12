@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const AboutPage = () => {
@@ -8,11 +8,11 @@ const AboutPage = () => {
       <Link className="btn btn-light my-3" to="/">
         Home
       </Link>
-      <Container style={{ marginTop: "-10px" }}>
+      <Container style={{ marginTop: "-10px", textAlign: "center" }}>
         <Row>
           <Col className="text-center py-3">
             {/* <h6>About</h6> */}
-            <h2>Clay Dazing</h2>
+            <h2>About Me</h2>
           </Col>
         </Row>
         <Row>
@@ -32,6 +32,12 @@ const AboutPage = () => {
           decent interest and thus, Clay Dazing was born. And I am so thankful
           you are here for it. 💗
         </Row>
+        <Row>
+          <h3>Happy Clay Dazing!</h3>
+        </Row>
+        <Card>
+          <Card.Img src="https://images.squarespace-cdn.com/content/v1/5fdaad402c1ded02b3775ccf/1625028747355-WCOPBKDR0CK1BXST5I7X/Clay+Dazing+-+About+Me?format=750w" />
+        </Card>
       </Container>
     </div>
   );

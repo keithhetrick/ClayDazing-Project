@@ -140,8 +140,10 @@ const PlaceOrderPage = () => {
                   <Col>${cart.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
-              <ListGroup.Item>
-                {error && <Message variant="danger">{error}</Message>}
+              <ListGroup.Item style={{ textAlign: "center" }}>
+                {error && (
+                  <Message variant="danger">Sign in to place order!</Message>
+                )}
               </ListGroup.Item>
               <ListGroup.Item>
                 <Button
