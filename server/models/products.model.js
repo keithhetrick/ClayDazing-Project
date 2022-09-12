@@ -5,11 +5,11 @@ const reviewSchema = mongoose.Schema(
     name: { type: String, required: true },
     rating: { type: Number, required: true },
     comment: { type: String, required: true },
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      // required: true,
-      ref: "User",
-    },
+    // user: {
+    //   type: mongoose.Schema.Types.ObjectId,
+    //   required: true,
+    //   ref: "User",
+    // },
   },
   {
     timestamps: true,
@@ -18,11 +18,11 @@ const reviewSchema = mongoose.Schema(
 
 const productSchema = new mongoose.Schema(
   {
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      // required: true,
-      ref: "User",
-    },
+    // user: {
+    //   type: mongoose.Schema.Types.ObjectId,
+    //   required: true,
+    //   ref: "User",
+    // },
     name: {
       type: String,
       required: [true, "Name is required"],
@@ -62,7 +62,7 @@ const productSchema = new mongoose.Schema(
       required: true,
       default: 0,
     },
-    inStock: {
+    countInStock: {
       type: Number,
       required: true,
       default: 0,
@@ -71,5 +71,6 @@ const productSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// const Product = mongoose.model("Product", productSchema);
-module.exports = mongoose.model("Product", productSchema);
+const Products = mongoose.model("Products", productSchema);
+
+module.exports = Products;

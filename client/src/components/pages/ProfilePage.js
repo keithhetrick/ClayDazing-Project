@@ -34,15 +34,15 @@ const ProfilePage = () => {
   useEffect(() => {
     if (!userInfo) {
       navigate("/login");
-      // } else {
-      //   if (!user || !user.name || success) {
-      //     dispatch({ type: USER_UPDATE_PROFILE_RESET });
-      //     dispatch(getUserDetails("profile"));
-      //     dispatch(listMyOrders());
-      //   } else {
-      //     setName(user.name);
-      //     setEmail(user.email);
-      //   }
+    } else {
+      if (!user || !user.name || success) {
+        dispatch({ type: USER_UPDATE_PROFILE_RESET });
+        dispatch(getUserDetails("profile"));
+        dispatch(listMyOrders());
+      } else {
+        setName(user.name);
+        setEmail(user.email);
+      }
     }
   }, [dispatch, navigate, userInfo, user, success]);
 

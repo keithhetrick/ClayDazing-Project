@@ -3,7 +3,7 @@ const OrdersController = require("../controllers/orders.controller");
 module.exports = (app) => {
   // app.post("/api/users/login", OrdersController.authUsers);
   // app.get("/api/users/login", OrdersController.authUsers);
-  // app.get("/api/orders/", OrdersController.getUsers);
+  app.get("/api/orders", OrdersController.getAllOrders);
   app.post("/api/orders", OrdersController.addOrderItems);
   app.get("/api/orders/:id", OrdersController.getOrderById);
   app.get("/api/orders/myorders", OrdersController.getMyOrders);

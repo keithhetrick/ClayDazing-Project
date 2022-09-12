@@ -12,24 +12,36 @@ app.use(
     origin: "http://localhost:3000",
   })
 );
-// const { notFound, errorHandler } = require("./middleware/errorMiddleware");
+const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 
 app.use((req, res, next) => {
   console.log(`Hello from PORT ${PORT}`);
+  // console.log(req.originalUrl);
   next();
 });
+
+// app.use((err, req, res, next) => {
+//   const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
+//   res.status(statusCode);
+//   console.log(res.status(statusCode));
+//   // Show stack trace if node environment is in development mode
+//   res.json({
+//     message: err.message,
+//     stack: process.env.NODE_ENV === "production" ? null : err.stack,
+//   });
+// });
 
 app.get("/api/config/paypal", (req, res) => {
   res.send(process.env.PAYPAL_CLIENT_ID);
   // console.log(res.send(process.env.PAYPAL_CLIENT_ID));
 });
 
-// app.use(notFound);
-// app.use(errorHandler);
-
 require("./routes/products.routes")(app);
 require("./routes/users.routes")(app);
 require("./routes/orders.routes")(app);
+
+app.use(notFound);
+app.use(errorHandler);
 
 dotenv.config();
 // require("dotenv").config;

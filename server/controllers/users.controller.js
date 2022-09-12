@@ -1,10 +1,7 @@
 const Users = require("../models/users.model");
 const asyncHandler = require("express-async-handler");
+const generateToken = require("../utils/generateToken");
 // const bcrypt = require("bcryptjs");
-
-//@desc  Auth user & get token
-//@route  POST /api/users/login
-//@access  Public
 
 // const findAllUsers = (req, res) => {
 //   Users.find()
@@ -12,34 +9,113 @@ const asyncHandler = require("express-async-handler");
 //     .catch((err) => res.json(err));
 // };
 
+// const addUsers = (req, res) => {
+//   Users.create(req.body)
+//     .then((newUser) => res.json(newUser))
+//     .catch((err) => res.status(400).json(err));
+// };
+
 const getUsers = asyncHandler(async (req, res) => {
   const users = await Users.find({});
-  // res.status(401);
-  // throw new Error("Not Authorized");
   res.json(users);
 });
 
-const addUsers = (req, res) => {
-  Users.create(req.body)
-    .then((newUser) => res.json(newUser))
-    .catch((err) => res.status(400).json(err));
-};
+// const addUsers = asyncHandler(async (req, res) => {
+//   const users = await Users.create(req.body);
+//   res.json(users);
+// });
 
-const editUser = (req, res) => {
-  Users.updateOne({ _id: req.params.id }, req.body, {
-    new: true,
-    runValidators: true,
-  })
-    .then((editUser) => {
-      res.json(editUser);
-      console.log(editUser);
-    })
-    .catch((err) => res.status(400).json(err));
-};
+const addUsers = asyncHandler(async (req, res) => {
+  const { name, email, password } = req.body;
+
+  const userExists = await Users.findOne({ email });
+
+  if (userExists) {
+    res.status(400);
+    throw new Error("User already exists");
+  }
+
+  const user = await Users.create({
+    name,
+    email,
+    password,
+  });
+
+  if (user) {
+    res.status(201).json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      isAdmin: user.isAdmin,
+      // token: null,
+      token: generateToken(user._id),
+    });
+  } else {
+    res.status(400);
+    throw new Error("Invalid user data");
+  }
+});
+
+// if (user) {
+//   res.json(user);
+// } else {
+//   res.status(404);
+//   throw new Error("User not found");
+// }
+
+// const editUser = asyncHandler(async (req, res) => {
+//   const editUser = await Users.updateOne({ _id: req.params.id }, req.body);
+//   res.json(editUser);
+// });
+
+// const editUser = asyncHandler(async (req, res) => {
+//   const user = await Users.updateOne({ _id: req.params.id }, req.body);
+//   if (user) {
+//     // new: true,
+//     // runValidators: true,
+//     res.json(user);
+//   } else {
+//     res.status(404);
+//     throw new Error("User not found");
+//   }
+// });
+
+const editUser = asyncHandler(async (req, res) => {
+  const user = await Users.findById(req.params.id);
+
+  if (user) {
+    user.name = req.body.name || user.name;
+    user.email = req.body.email || user.email;
+    user.isAdmin = req.body.isAdmin;
+
+    const updatedUser = await user.save();
+
+    res.json({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      isAdmin: updatedUser.isAdmin,
+    });
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
+});
+
+// const editUser = (req, res) => {
+//   Users.updateOne({ _id: req.params.id }, req.body, {
+//     new: true,
+//     runValidators: true,
+//   })
+//     .then((editUser) => {
+//       res.json(editUser);
+//       console.log(editUser);
+//     })
+//     .catch((err) => res.status(400).json(err));
+// };
 
 const getUserById = asyncHandler(async (req, res) => {
   const user = await Users.findById(req.params.id);
-
   if (user) {
     res.json(user);
   } else {
@@ -77,35 +153,71 @@ const getUserById = asyncHandler(async (req, res) => {
 //   }
 // });
 
-const deleteUser = (req, res) => {
-  Users.deleteOne({ _id: req.params.id })
-    .then((deleteUser) => {
-      res.json(deleteUser);
-      console.log(deleteUser);
-    })
-    .catch((err) => res.status(400).json(err));
-};
+// const deleteUser = (req, res) => {
+//   Users.deleteOne({ _id: req.params.id })
+//     .then((deleteUser) => {
+//       res.json(deleteUser);
+//       console.log(deleteUser);
+//     })
+//     .catch((err) => res.status(400).json(err));
+// };
 
-// const authUsers = asyncHandler(async (req, res) => {
-//   const { email, password } = req.body;
+const deleteUser = asyncHandler(async (req, res) => {
+  const user = await Users.findById(req.params.id);
 
-//   const user = await Users.findOne({ email });
-//   const isMatch = await bcrypt.compare(password, user.password);
+  if (user) {
+    await user.remove();
+    res.json({ message: "User removed" });
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
+});
 
-//   if (user && isMatch) {
-//     res.json({
-//       _id: user._id,
-//       name: user.name,
-//       email: user.email,
-//       isAdmin: user.isAdmin,
-//       token: null,
-//       // token: generateToken(user._id),
-//     });
-//   } else {
-//     res.status(401);
-//     throw new Error("Invalid email or password");
-//   }
-// });
+const authUsers = asyncHandler(async (req, res) => {
+  const { email, password } = req.body;
+
+  // res.send({
+  //   email,
+  //   password,
+  // });
+
+  const user = await Users.findOne({ email });
+  // const isMatch = await bcrypt.compare(password, user.password);
+
+  // if (user && isMatch) {
+  if (user) {
+    // if (user && (await user.matchPassword(password))) {
+    res.json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      isAdmin: user.isAdmin,
+      token: generateToken(user._id),
+    });
+  } else {
+    res.status(401);
+    throw new Error("Invalid email or password");
+  }
+});
+
+const getUserProfile = asyncHandler(async (req, res) => {
+  res.send("Success");
+
+  // const user = await Users.findById(req.user._id);
+
+  // if (user) {
+  //   res.json({
+  //     _id: user._id,
+  //     name: user.name,
+  //     email: user.email,
+  //     isAdmin: user.isAdmin,
+  //   });
+  // } else {
+  //   res.status(404);
+  //   throw new Error("User not found");
+  // }
+});
 
 module.exports = {
   getUsers,
@@ -113,6 +225,8 @@ module.exports = {
   getUserById,
   editUser,
   deleteUser,
+  authUsers,
+  getUserProfile,
 };
 
 // const authUser = asyncHandler(async (req, res) => {

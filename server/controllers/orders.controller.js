@@ -1,9 +1,5 @@
-const Order = require("../models/orders.model");
+const Orders = require("../models/orders.model");
 const asyncHandler = require("express-async-handler");
-
-//@desc  Create new order
-//@route  POST /api/orders
-//@access  Private
 
 const addOrderItems = asyncHandler(async (req, res) => {
   const {
@@ -20,7 +16,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("No order items");
   } else {
-    const order = new Order({
+    const order = new Orders({
       orderItems,
       // user: req.user._id,
       shippingAddress,
@@ -36,12 +32,8 @@ const addOrderItems = asyncHandler(async (req, res) => {
   }
 });
 
-//@desc  Get order by Id
-//@route  GET /api/orders/:id
-//@access  Private
-
 const getOrderById = asyncHandler(async (req, res) => {
-  const order = await Order.findById(req.params.id).populate(
+  const order = await Orders.findById(req.params.id).populate(
     "user",
     "name email"
   );
@@ -54,12 +46,8 @@ const getOrderById = asyncHandler(async (req, res) => {
   }
 });
 
-//@desc  Update order to paid
-//@route  GET /api/orders/:id/pay
-//@access  Private
-
 const updateOrderToPaid = asyncHandler(async (req, res) => {
-  const order = await Order.findById(req.params.id);
+  const order = await Orders.findById(req.params.id);
 
   if (order) {
     order.isPaid = true;
@@ -80,11 +68,13 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc    Get logged in user orders
-// @route   GET /api/orders/myorders
-// @access  Private
 const getMyOrders = asyncHandler(async (req, res) => {
-  const orders = await Order.find({ user: req.user._id });
+  const orders = await Orders.find({ user: req.user._id });
+  res.json(orders);
+});
+
+const getAllOrders = asyncHandler(async (req, res) => {
+  const orders = await Orders.find({});
   res.json(orders);
 });
 
@@ -126,4 +116,5 @@ module.exports = {
   getOrderById,
   updateOrderToPaid,
   getMyOrders,
+  getAllOrders,
 };

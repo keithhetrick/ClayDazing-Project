@@ -5,9 +5,8 @@ const userSchema = mongoose.Schema(
   {
     name: {
       type: String,
-      // required: [true, "Name is required!"],
+      required: [true, "Name is required!"],
       minlength: [3, "Name must be 3 characters or longer."],
-      unique: true,
     },
     email: {
       type: String,
@@ -20,6 +19,11 @@ const userSchema = mongoose.Schema(
       required: [true, "Password is required!"],
       minlength: [3, "Password must be 3 characters or longer."],
     },
+    // confirmPassword: {
+    //   type: String,
+    //   required: [true, "Password is required!"],
+    //   minlength: [3, "Password must be 3 characters or longer."],
+    // },
     isAdmin: {
       type: Boolean,
       required: true,
@@ -33,4 +37,6 @@ userSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
 
-module.exports = mongoose.model("User", userSchema);
+const Users = mongoose.model("Users", userSchema);
+
+module.exports = Users;

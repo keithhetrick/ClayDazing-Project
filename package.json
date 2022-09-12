@@ -4,7 +4,9 @@
   },
   "dependencies": {
     "firebase": "^9.6.7",
+    "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
-    "react-paypal-button-v2": "^2.6.3"
+    "react-paypal-button-v2": "^2.6.3",
+    "sass": "^1.54.9"
   }
 }

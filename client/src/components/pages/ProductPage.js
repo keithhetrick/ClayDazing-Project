@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { listProducts } from "../../actions/productActions";
 import Product from "../Product";
@@ -25,9 +25,29 @@ const ProductPage = () => {
   return (
     <main>
       {<ProductCarousel />}
-      <Link className=" btn btn-light my-3" to="/">
-        Go Back
-      </Link>
+      <Container>
+        <Row>
+          <Col md={3}>
+            <Link className=" btn btn-light my-3" to="/">
+              Go Back
+            </Link>
+          </Col>
+          <Col
+            className="text-center py-3"
+            md={6}
+            style={{ margin: "0", padding: "0px 12px 12px 12px" }}
+          >
+            <h6 style={{ fontStyle: "italic", margin: "0" }}>
+              Handmade happiness for your ears.
+            </h6>
+          </Col>
+          {/* <Col className="text-center py-3" md={3}>
+            <h6 style={{ fontStyle: "italic" }}>
+              Handmade happiness for your ears.
+            </h6>
+          </Col> */}
+        </Row>
+      </Container>
       <h1 className="text-center py-3">Latest Products</h1>
       <div>
         <SearchBox />
@@ -37,9 +57,9 @@ const ProductPage = () => {
       ) : error ? (
         <Message variant="danger">{error}</Message>
       ) : (
-        <Row>
+        <Row className="box-wra">
           {products.map((product) => (
-            <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+            <Col className="bo" key={product._id} sm={12} md={6} lg={4} xl={3}>
               <Product product={product} />
             </Col>
           ))}
