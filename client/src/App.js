@@ -16,6 +16,7 @@ import LoginPage from "./components/pages/LoginPage";
 import ProfilePage from "./components/pages/ProfilePage";
 import PaymentPage from "./components/pages/PaymentPage";
 import PlaceOrderPage from "./components/pages/PlaceOrderPage";
+import OrderPage from "./components/pages/OrderPage";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/register" element={<RegisterPage />} />
+            <Route path="/order/:id" element={<OrderPage />} />
             <Route path="/users/:id" />
             <Route path="/users/:id/update" />
             <Route path="/users/:id/history" />

@@ -41,7 +41,7 @@ const CartPage = () => {
 
   const checkoutHandler = () => {
     console.log("checkout");
-    navigate("/users/login?redirect=shipping");
+    navigate("/placeorder");
   };
 
   return (
