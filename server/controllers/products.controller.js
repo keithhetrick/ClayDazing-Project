@@ -5,7 +5,18 @@ const asyncHandler = require("express-async-handler");
 //@route  GET /api/products
 //@access  Public
 const getProducts = asyncHandler(async (req, res) => {
-  const products = await Products.find({});
+  const pageSize = 2;
+  const page = Number(req.query.pageNumber) || 1;
+  const query = req.query.query
+    ? {
+        name: {
+          $regex: req.query.query,
+          $options: "i",
+        },
+      }
+    : {};
+
+  const products = await Products.find({ ...query });
   // res.status(401);
   // throw new Error("Not Authorized");
   res.json(products);
@@ -58,44 +69,26 @@ const createProductReview = (req, res) => {
     .catch((err) => res.status(400).json(err));
 };
 
-// const createProductReview = asyncHandler(async (req, res) => {
-//   const { rating, comment } = req.body;
-//   const product = await Products.findById(req.params.id);
+//@desc  Get top rated products
+//@route  GET /api/products/top
+//@access  Public
+// const createProductReview = (req, res) => {
+//   Products.updateOne({ _id: req.params.id }, req.body, {
+//     new: true,
+//     // runValidators: true,
+//   })
+//     .then((editProduct) => {
+//       res.json(editProduct);
+//       console.log(editProduct);
+//     })
+//     .catch((err) => res.status(400).json(err));
+// };
 
-//   if (product) {
-//     const alreadyReviewed = product.reviews.find(
-//       (review) => review.user.toString() === req.user._id.toString()
-//     );
+const getTopProducts = asyncHandler(async (req, res) => {
+  const products = await Products.find({}).sort({ rating: -1 }).limit(3);
 
-//     if (alreadyReviewed) {
-//       res.status(400);
-//       throw new Error("Product already reviewed");
-//     }
-
-//     const review = {
-//       name: req.user.name,
-//       rating: Number(rating),
-//       comment,
-//       user: req.user._id,
-//     };
-
-//     product.reviews.push(review);
-
-//     product.numReviews = product.reviews.length;
-
-//     product.rating =
-//       product.reviews.reduce(
-//         (accumulator, item) => item.rating + accumulator,
-//         0
-//       ) / product.reviews.length;
-
-//     await product.save();
-//     res.status(201).json({ message: "Review added" });
-//   } else {
-//     res.status(404);
-//     throw new Error("Product not found");
-//   }
-// });
+  res.json(products);
+});
 
 module.exports = {
   getProducts,
@@ -103,4 +96,5 @@ module.exports = {
   addProduct,
   editProduct,
   createProductReview,
+  getTopProducts,
 };

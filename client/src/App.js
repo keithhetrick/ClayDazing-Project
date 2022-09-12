@@ -9,7 +9,7 @@ import AboutPage from "./components/pages/AboutPage";
 import AffiliatesPage from "./components/pages/AffiliatesPage";
 import SingleProductPage from "./components/pages/SingleProductPage";
 import CartPage from "./components/pages/CartPage";
-import SearchPage from "./components/pages/SearchPage";
+// import SearchPage from "./components/pages/SearchPage";
 import ShippingPage from "./components/pages/ShippingPage";
 import RegisterPage from "./components/pages/RegisterPage";
 import LoginPage from "./components/pages/LoginPage";
@@ -17,6 +17,7 @@ import ProfilePage from "./components/pages/ProfilePage";
 import PaymentPage from "./components/pages/PaymentPage";
 import PlaceOrderPage from "./components/pages/PlaceOrderPage";
 import OrderPage from "./components/pages/OrderPage";
+import SearchBox from "./components/SearchBox";
 
 function App() {
   return (
@@ -26,6 +27,8 @@ function App() {
         <Container>
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/search/:keyword" element={<SearchBox />} />
+            <Route path="/search/" element={<SearchBox />} />
             <Route path="/products" element={<ProductPage />} />
             <Route path="/products/:id" element={<SingleProductPage />} />
             <Route path="/login" element={<LoginPage />} />
@@ -38,7 +41,7 @@ function App() {
             <Route path="/users/admin" />
             <Route path="/ratings" />
             <Route path="/wishlist" />
-            <Route path="/search" element={<SearchPage />} />
+            {/* <Route path="/search" element={<SearchPage />} /> */}
             <Route path="/shipping" element={<ShippingPage />} />
             <Route path="/faq" element={<FAQPage />} />
             <Route path="/affiliates" element={<AffiliatesPage />} />

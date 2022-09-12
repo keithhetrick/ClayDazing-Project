@@ -6,8 +6,13 @@ import { listProducts } from "../../actions/productActions";
 import Product from "../Product";
 import Message from "../Message";
 import Loader from "../Loader";
+import SearchBox from "../SearchBox";
+import ProductCarousel from "../ProductCarousel";
 
 const ProductPage = () => {
+  // const { id } = useParams();
+  // const query = id.query.query;
+
   const dispatch = useDispatch();
 
   const productList = useSelector((state) => state.productList);
@@ -19,10 +24,14 @@ const ProductPage = () => {
 
   return (
     <main>
+      {<ProductCarousel />}
       <Link className=" btn btn-light my-3" to="/">
         Go Back
       </Link>
       <h1 className="text-center py-3">Latest Products</h1>
+      <div>
+        <SearchBox />
+      </div>
       {loading ? (
         <Loader />
       ) : error ? (
