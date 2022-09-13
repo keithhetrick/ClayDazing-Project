@@ -113,8 +113,8 @@ const authUsers = asyncHandler(async (req, res) => {
 
 const getUserProfile = asyncHandler(async (req, res) => {
   res.send("Success");
-  console.log("PLZ WORK");
-  console.log(req.headers.authorization);
+  // console.log("PLZ WORK");
+  // console.log(req.headers.authorization);
 });
 
 module.exports = {

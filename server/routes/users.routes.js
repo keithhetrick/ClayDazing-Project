@@ -1,12 +1,9 @@
 const UsersController = require("../controllers/users.controller");
-const authMiddleware = require("../middleware/authMiddleware");
+// const authMiddleware = require("../middleware/authMiddleware");
 
 module.exports = (app) => {
   // THIS IS THE PROBLEM LINE
-  app.get(
-    authMiddleware,
-    ("/api/users/profile", UsersController.getUserProfile)
-  );
+  app.get("/api/users/profile", UsersController.getUserProfile);
 
   app.post("/api/users/login", UsersController.authUsers);
   app.get("/api/users", UsersController.getUsers);
