@@ -44,7 +44,7 @@ const PlaceOrderPage = () => {
   const placeOrderHandler = () => {
     console.log("order");
     // console.log(_id);
-    console.log(order._id);
+    // console.log(order._id);
     // console.log(dispatch);
     // console.log(orderCreate);
     console.log(createOrder);

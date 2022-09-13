@@ -21,7 +21,7 @@ const userSchema = mongoose.Schema(
     },
     confirmPassword: {
       type: String,
-      required: [true, "Password is required!"],
+      // required: [true, "Password is required!"],
       minlength: [3, "Password must be 3 characters or longer."],
     },
     isAdmin: {

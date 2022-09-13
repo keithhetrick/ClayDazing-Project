@@ -4,7 +4,7 @@ import { Row, Col, ListGroup, Image, Card } from "react-bootstrap";
 import { PayPalButton } from "react-paypal-button-v2";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { getOrderDetails, payOrder } from "../../actions/orderActions";
+import { payOrder, getOrderDetails } from "../../actions/orderActions";
 import { ORDER_PAY_RESET } from "../../constants/orderConstants";
 import Loader from "../Loader";
 import Message from "../Message";

@@ -13,6 +13,7 @@ import {
   PRODUCT_PRODUCT_TOP_REQUEST,
   PRODUCT_PRODUCT_TOP_SUCCESS,
   PRODUCT_PRODUCT_TOP_FAIL,
+  PRODUCT_DELETE_REQUEST,
 } from "../constants/productConstants";
 
 export const listProducts =
@@ -51,6 +52,40 @@ export const listProductDetails = (id) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: PRODUCT_DETAILS_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const deleteProduct = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: PRODUCT_DELETE_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+    const { data } = await axios.get(
+      "http://localhost:8000/api/orders/myorders",
+      config
+    );
+    dispatch({
+      type: ORDER_LIST_MY_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: ORDER_LIST_MY_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

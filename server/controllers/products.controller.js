@@ -51,6 +51,26 @@ const editProduct = (req, res) => {
     .catch((err) => res.status(400).json(err));
 };
 
+const deleteProduct = asyncHandler(async (req, res) => {
+  const product = await Products.findById(req.params.id);
+  if (product) {
+    await product.deleteOne();
+    res.json({ message: "Product removed" });
+  } else {
+    res.data.err;
+    res.status(400).json(err);
+  }
+});
+
+// const deleteProduct = (req, res) => {
+//   Products.deleteOne({ _id: req.params.id })
+//     .then((deleteProduct) => {
+//       console.log(deleteProduct);
+//       this.readAllPets(req, res);
+//     })
+//     .catch((err) => res.status(400).json(err));
+// };
+
 const createProductReview = (req, res) => {
   Products.updateOne({ _id: req.params.id }, req.body, {
     new: true,
@@ -76,4 +96,5 @@ module.exports = {
   editProduct,
   createProductReview,
   getTopProducts,
+  deleteProduct,
 };

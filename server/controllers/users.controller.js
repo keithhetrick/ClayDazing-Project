@@ -32,7 +32,7 @@ const addUsers = asyncHandler(async (req, res) => {
       email: user.email,
       isAdmin: user.isAdmin,
       // token: null,
-      token: generateToken(user._id),
+      // token: generateToken(user._id),
     });
   } else {
     res.status(400);
@@ -111,6 +111,7 @@ const authUsers = asyncHandler(async (req, res) => {
   } else {
     // err;
     res.status(401);
+    // throw new Error("Invalid email or password");
     throw new Error("Invalid email or password");
     // console.log(err);
   }
@@ -118,8 +119,6 @@ const authUsers = asyncHandler(async (req, res) => {
 
 const getUserProfile = asyncHandler(async (req, res) => {
   const user = await Users.findById(req.user._id);
-
-  console.log("Inside user.controller");
 
   if (user) {
     res.json({
@@ -133,6 +132,15 @@ const getUserProfile = asyncHandler(async (req, res) => {
     throw new Error("User not found");
   }
 });
+
+// const getUserProfile = (req, res) => {
+//   Users.findOne({ _id: req.params.id })
+//     .then((user) => {
+//       console.log(user);
+//       res.json(user);
+//     })
+//     .catch((err) => res.status(400).json(err));
+// };
 
 // const getUserProfile = asyncHandler(async (req, res) => {
 //   const user = await Users.findById(req.params.id);

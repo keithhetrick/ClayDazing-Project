@@ -19,6 +19,7 @@ import PlaceOrderPage from "./components/pages/PlaceOrderPage";
 import OrderPage from "./components/pages/OrderPage";
 import SearchBox from "./components/SearchBox";
 import UserListPage from "./components/pages/UserListPage";
+import ProductListPage from "./components/pages/ProductListPage";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
             <Route path="/users/:id/history" />
             <Route path="/users/admin" />
             <Route path="/admin/userlist" element={<UserListPage />} />
+            <Route path="/admin/productlist" element={<ProductListPage />} />
             <Route path="/ratings" />
             <Route path="/wishlist" />
             {/* <Route path="/search" element={<SearchPage />} /> */}
