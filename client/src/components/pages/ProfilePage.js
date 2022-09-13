@@ -16,6 +16,7 @@ const ProfilePage = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState(null);
   const navigate = useNavigate();
+  // const { id } = useParams();
 
   const dispatch = useDispatch();
 
@@ -40,6 +41,7 @@ const ProfilePage = () => {
         dispatch(getUserDetails("profile"));
         dispatch(listMyOrders());
       } else {
+        // console.log(user.name);
         setName(user.name);
         setEmail(user.email);
       }

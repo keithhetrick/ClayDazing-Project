@@ -119,7 +119,7 @@ const authUsers = asyncHandler(async (req, res) => {
 const getUserProfile = asyncHandler(async (req, res) => {
   const user = await Users.findById(req.user._id);
 
-  console.log("In User Controller");
+  console.log("Inside user.controller");
 
   if (user) {
     res.json({

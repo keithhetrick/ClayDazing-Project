@@ -9,9 +9,9 @@ const HomePage = () => {
       <Container>
         <Row>
           <Col className="text-center py-3">
-            <h6 style={{ fontStyle: "italic" }}>
+            {/* <h6 style={{ fontStyle: "italic" }}>
               Handmade happiness for your ears.
-            </h6>
+            </h6> */}
             <div className="home-card">
               <Link
                 style={{ border: "none" }}

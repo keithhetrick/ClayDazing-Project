@@ -18,6 +18,7 @@ import PaymentPage from "./components/pages/PaymentPage";
 import PlaceOrderPage from "./components/pages/PlaceOrderPage";
 import OrderPage from "./components/pages/OrderPage";
 import SearchBox from "./components/SearchBox";
+import UserListPage from "./components/pages/UserListPage";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
             <Route path="/users/:id/update" />
             <Route path="/users/:id/history" />
             <Route path="/users/admin" />
+            <Route path="/admin/userlist" element={<UserListPage />} />
             <Route path="/ratings" />
             <Route path="/wishlist" />
             {/* <Route path="/search" element={<SearchPage />} /> */}
