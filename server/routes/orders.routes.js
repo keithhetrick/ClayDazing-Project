@@ -8,6 +8,10 @@ module.exports = (app) => {
   app.get("/api/orders/myorders", OrdersController.getMyOrders);
   app.get("/api/orders/:id", OrdersController.getOrderById);
   app.put("/api/orders/:id/pay", OrdersController.updateOrderToPaid);
+  app.put(
+    "/api/orders/:id/delivery",
+    OrdersController.updateOrderToOutForDelivery
+  );
   // app.put("/api/orders/profile/:id", OrdersController.editUser);
   // app.delete("/api/orders/login/:id", OrdersController.deleteUser);
 };

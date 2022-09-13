@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Row, Col, Container } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import { listProducts } from "../../actions/productActions";
 import Product from "../Product";
 import Message from "../Message";
@@ -28,9 +27,9 @@ const ProductPage = () => {
       <Container>
         <Row>
           <Col md={3}>
-            <Link className=" btn btn-light my-3" to="/">
+            {/* <Link className=" btn btn-light my-3" to="/">
               Go Back
-            </Link>
+            </Link> */}
           </Col>
           <Col
             className="text-center py-3"

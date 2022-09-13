@@ -9,6 +9,6 @@ module.exports = (app) => {
   app.get("/api/users", UsersController.getUsers);
   app.post("/api/users", UsersController.addUsers);
   app.get("/api/users/:id", UsersController.getUserById);
-  app.put("/api/users/profile/:id", UsersController.editUser);
+  app.put("/api/users/profile/:id", UsersController.updateUser);
   app.delete("/api/users/:id", UsersController.deleteUser);
 };

@@ -2,53 +2,97 @@ import React, { useEffect } from "react";
 import { Button, Table, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
-import { useNavigate, useParams } from "react-router-dom";
-import { listProducts } from "../../actions/productActions";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import {
+  listProducts,
+  createProduct,
+  deleteProduct,
+} from "../../actions/productActions";
+import { PRODUCT_CREATE_RESET } from "../../constants/productConstants";
 import Loader from "../Loader";
 import Message from "../Message";
 
 const ProductListPage = () => {
-  const { id } = useParams();
+  // const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
 
+  const productCreate = useSelector((state) => state.productCreate);
+  const {
+    loading: loadingCreate,
+    error: errorCreate,
+    success: successCreate,
+    product: createdProduct,
+  } = productCreate;
+
+  const productDelete = useSelector((state) => state.productDelete);
+  const {
+    loading: loadingDelete,
+    error: errorDelete,
+    success: successDelete,
+  } = productDelete;
+
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
   useEffect(() => {
-    if (userInfo && userInfo.isAdmin) {
-      dispatch(listProducts());
-    } else {
+    dispatch({ type: PRODUCT_CREATE_RESET });
+
+    if (!userInfo.isAdmin) {
       navigate("/login");
     }
-    dispatch(listProducts());
-  }, [dispatch, navigate, userInfo]);
+    if (successCreate) {
+      navigate(`/admin/product/${createdProduct._id}/edit`);
+    } else {
+      dispatch(listProducts());
+    }
+  }, [
+    dispatch,
+    navigate,
+    userInfo,
+    successCreate,
+    successDelete,
+    createdProduct,
+  ]);
 
   const deleteHandler = (id) => {
     if (window.confirm("Are you sure?")) {
-      // DELETE PRODUCTS
+      dispatch(deleteProduct(id));
+      // navigate("/admin/productlist");
     }
   };
 
-  const createProductHandler = (product) => {
-    console.log(createProductHandler);
+  const createProductHandler = () => {
+    // console.log(createProductHandler);
+    dispatch(createProduct());
   };
 
   return (
     <div>
-      <Row className="align-items-center">
+      <Link className="btn btn-light my-3" to="/products">
+        Go Back
+      </Link>
+      <Row className="align-items-centåer">
         <Col>
           <h1>Products</h1>
         </Col>
-        <Col className="text-right">
-          <Button className="my-3" onClick={createProductHandler}>
-            <i className="fas fa-plus"></i> Create Product
-          </Button>
-        </Col>
+        <Col className="text-right"></Col>
+        <Button
+          className="my-3"
+          style={{ width: "30%" }}
+          onClick={createProductHandler}
+        >
+          <i className="fas fa-plus"></i> Create Product
+        </Button>
       </Row>
+      {loadingCreate && <Loader />}
+      {errorCreate && <Message variant="danger">{errorCreate}</Message>}
+      {loadingDelete && <Loader />}
+      {errorDelete && <Message variant="danger">{errorDelete}</Message>}
       {loading ? (
         <Loader />
       ) : error ? (

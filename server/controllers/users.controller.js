@@ -40,7 +40,7 @@ const addUsers = asyncHandler(async (req, res) => {
   }
 });
 
-const editUser = asyncHandler(async (req, res) => {
+const updateUser = asyncHandler(async (req, res) => {
   const user = await Users.findById(req.params.id);
 
   if (user) {
@@ -66,7 +66,7 @@ const editUser = asyncHandler(async (req, res) => {
 });
 
 const getUserById = asyncHandler(async (req, res) => {
-  const user = await Users.findById(req.params.id);
+  const user = await Users.findById(req.params.id).select("-password");
   if (user) {
     res.json(user);
   } else {
@@ -133,30 +133,11 @@ const getUserProfile = asyncHandler(async (req, res) => {
   }
 });
 
-// const getUserProfile = (req, res) => {
-//   Users.findOne({ _id: req.params.id })
-//     .then((user) => {
-//       console.log(user);
-//       res.json(user);
-//     })
-//     .catch((err) => res.status(400).json(err));
-// };
-
-// const getUserProfile = asyncHandler(async (req, res) => {
-//   const user = await Users.findById(req.params.id);
-//   if (user) {
-//     res.json(user);
-//   } else {
-//     res.status(404);
-//     throw new Error("User not found");
-//   }
-// });
-
 module.exports = {
   getUsers,
   addUsers,
   getUserById,
-  editUser,
+  updateUser,
   deleteUser,
   authUsers,
   getUserProfile,

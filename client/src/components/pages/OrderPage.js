@@ -1,27 +1,43 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { Row, Col, ListGroup, Image, Card } from "react-bootstrap";
+import { Row, Col, ListGroup, Image, Card, Button } from "react-bootstrap";
 import { PayPalButton } from "react-paypal-button-v2";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
-import { payOrder, getOrderDetails } from "../../actions/orderActions";
-import { ORDER_PAY_RESET } from "../../constants/orderConstants";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import {
+  payOrder,
+  getOrderDetails,
+  outForDeliveryOrder,
+} from "../../actions/orderActions";
+import {
+  ORDER_PAY_RESET,
+  ORDER_OUT_FOR_DELIVERY_RESET,
+} from "../../constants/orderConstants";
+import CheckoutBreadcrumbs from "../CheckoutBreadcrumbs";
 import Loader from "../Loader";
 import Message from "../Message";
 
 const OrderPage = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const orderId = id;
 
   const [sdkReady, setSdkReady] = useState(false);
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
 
   const orderDetails = useSelector((state) => state.orderDetails);
   const { order, loading, error } = orderDetails;
 
   const orderPay = useSelector((state) => state.orderPay);
   const { loading: loadingPay, success: successPay } = orderPay;
+
+  // const outForDeliveryOrder = useSelector((state) => state.outForDeliveryOrder);
+  // const { loading: loadingDelivery, success: successDelivery } =
+  //   outForDeliveryOrder;
 
   if (!loading) {
     //   Calculate prices
@@ -58,6 +74,7 @@ const OrderPage = () => {
     };
     if (!order || successPay) {
       dispatch({ type: ORDER_PAY_RESET });
+      dispatch({ type: ORDER_OUT_FOR_DELIVERY_RESET });
       dispatch(getOrderDetails(orderId));
     } else if (!order.isPaid) {
       if (!window.paypal) {
@@ -73,12 +90,18 @@ const OrderPage = () => {
     dispatch(payOrder(orderId, paymentResult));
   };
 
+  const deliverHandler = () => {
+    dispatch(outForDeliveryOrder(order));
+    navigate(`/orders/${order._id}`);
+  };
+
   return loading ? (
     <Loader />
   ) : error ? (
     <Message variant="danger"></Message>
   ) : (
     <main>
+      <CheckoutBreadcrumbs step1 step2 step3 step4 />
       <h1>Order {order._id}</h1>
       <Row>
         <Col md={8}>
@@ -212,6 +235,22 @@ const OrderPage = () => {
                   )}
                 </ListGroup.Item>
               )}
+
+              {userInfo &&
+                userInfo.isAdmin &&
+                order.isPaid &&
+                !order.isDelivered && (
+                  <ListGroup.Item>
+                    <Button
+                      type="button"
+                      className="btn btn-block"
+                      onClick={deliverHandler}
+                      style={{ width: "100%" }}
+                    >
+                      Mark As Delivered
+                    </Button>
+                  </ListGroup.Item>
+                )}
             </ListGroup>
           </Card>
         </Col>

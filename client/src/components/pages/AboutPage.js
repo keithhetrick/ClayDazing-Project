@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 const AboutPage = () => {
   return (
     <div>
-      <Link className="btn btn-light my-3" to="/">
-        Home
+      <Link className="btn btn-light my-3" to="/products">
+        Go Back
       </Link>
       <Container style={{ marginTop: "-10px", textAlign: "center" }}>
         <Row>

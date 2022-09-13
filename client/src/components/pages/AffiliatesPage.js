@@ -46,26 +46,6 @@ const AffiliatesPage = () => {
               <ListGroup.Item>Description: Test 2</ListGroup.Item>
             </ListGroup>
           </Col>
-          <Col>
-            <ListGroup variant="flush">
-              <ListGroup.Item>
-                <h2>Affiliate 3</h2>
-              </ListGroup.Item>
-              <ListGroup.Item></ListGroup.Item>
-              <ListGroup.Item>Price: Test 3</ListGroup.Item>
-              <ListGroup.Item>Description: Test 3</ListGroup.Item>
-            </ListGroup>
-          </Col>
-          <Col>
-            <ListGroup variant="flush">
-              <ListGroup.Item>
-                <h2>Affiliate 4</h2>
-              </ListGroup.Item>
-              <ListGroup.Item></ListGroup.Item>
-              <ListGroup.Item>Price: Test 4</ListGroup.Item>
-              <ListGroup.Item>Description: Test 4</ListGroup.Item>
-            </ListGroup>
-          </Col>
         </Row>
       </Container>
     </div>

@@ -78,10 +78,13 @@ const FAQPage = () => {
                       // width="100"
                       // height="100"
                     />
-                    <button onClick={openCallieDanielleShop}>
-                      Callie Danielle
+                    <button
+                      onClick={openCallieDanielleShop}
+                      className="btn btn-light my-3"
+                    >
+                      click here to see MORE from Callie Danielle
                     </button>
-                    <ListGroup.Item>
+                    <ListGroup.Item style={{ background: "none" }}>
                       Clay Dazing x Callie Danielle - Shop the collab{" "}
                       <Link to="/products">here!</Link>
                     </ListGroup.Item>
@@ -94,11 +97,22 @@ const FAQPage = () => {
                     <ListGroup.Item>
                       <h4>Lovely Daffodils</h4>
                     </ListGroup.Item>
-                    <button onClick={openLovelyDaffodilsShop}>
-                      Lovely Daffodils
+                    <Card.Img
+                      className="align-center"
+                      src="https://cdn.shopify.com/s/files/1/0522/4552/8765/files/thumbnail_900x.jpg?v=1631113354"
+                      // width="100"
+                      // height="100"
+                    />
+                    <button
+                      onClick={openLovelyDaffodilsShop}
+                      className="btn btn-light my-3"
+                    >
+                      click here to see MORE from Lovely Daffodils
                     </button>
-                    <ListGroup.Item>Price: Test 2</ListGroup.Item>
-                    <ListGroup.Item>Description: Test 2</ListGroup.Item>
+                    <ListGroup.Item style={{ background: "none" }}>
+                      Clay Dazing x Lovely Daffodils - Shop the collab{" "}
+                      <Link to="/products">here! </Link>{" "}
+                    </ListGroup.Item>
                   </ListGroup>
                 </Col>
               </Row>

@@ -20,6 +20,9 @@ import OrderPage from "./components/pages/OrderPage";
 import SearchBox from "./components/SearchBox";
 import UserListPage from "./components/pages/UserListPage";
 import ProductListPage from "./components/pages/ProductListPage";
+import ProductEditPage from "./components/pages/ProductEditPage";
+import OrderListPage from "./components/pages/OrderListPage";
+import UserEditPage from "./components/pages/UserEditPage";
 
 function App() {
   return (
@@ -36,13 +39,19 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/register" element={<RegisterPage />} />
-            <Route path="/order/:id" element={<OrderPage />} />
+            <Route path="/orders/:id" element={<OrderPage />} />
             <Route path="/users/:id" />
             <Route path="/users/:id/update" />
             <Route path="/users/:id/history" />
             <Route path="/users/admin" />
             <Route path="/admin/userlist" element={<UserListPage />} />
             <Route path="/admin/productlist" element={<ProductListPage />} />
+            <Route path="/admin/orderlist" element={<OrderListPage />} />
+            <Route path="/admin/user/:id/edit" element={<UserEditPage />} />
+            <Route
+              path="/admin/product/:id/edit"
+              element={<ProductEditPage />}
+            />
             <Route path="/ratings" />
             <Route path="/wishlist" />
             {/* <Route path="/search" element={<SearchPage />} /> */}

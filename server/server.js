@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require("express");
 const app = express();
 const dotenv = require("dotenv");
@@ -23,12 +24,14 @@ app.use((req, res, next) => {
 
 app.get("/api/config/paypal", (req, res) => {
   res.send(process.env.PAYPAL_CLIENT_ID);
-  // console.log(res.send(process.env.PAYPAL_CLIENT_ID));
 });
+
+app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
 require("./routes/products.routes")(app);
 require("./routes/users.routes")(app);
 require("./routes/orders.routes")(app);
+require("./routes/upload.routes")(app);
 
 // app.use(protect);
 // console.log(protect);
