@@ -47,6 +47,9 @@ const editUser = asyncHandler(async (req, res) => {
     user.name = req.body.name || user.name;
     user.email = req.body.email || user.email;
     user.isAdmin = req.body.isAdmin;
+    if (req.body.password) {
+      user.password = req.body.password;
+    }
 
     const updatedUser = await user.save();
 
@@ -115,6 +118,8 @@ const authUsers = asyncHandler(async (req, res) => {
 
 const getUserProfile = asyncHandler(async (req, res) => {
   const user = await Users.findById(req.user._id);
+
+  console.log("In User Controller");
 
   if (user) {
     res.json({
