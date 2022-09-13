@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcryptjs");
+// const bcrypt = require("bcryptjs");
 
 const userSchema = mongoose.Schema(
   {
@@ -19,11 +19,11 @@ const userSchema = mongoose.Schema(
       required: [true, "Password is required!"],
       minlength: [3, "Password must be 3 characters or longer."],
     },
-    // confirmPassword: {
-    //   type: String,
-    //   required: [true, "Password is required!"],
-    //   minlength: [3, "Password must be 3 characters or longer."],
-    // },
+    confirmPassword: {
+      type: String,
+      required: [true, "Password is required!"],
+      minlength: [3, "Password must be 3 characters or longer."],
+    },
     isAdmin: {
       type: Boolean,
       required: true,
@@ -33,9 +33,9 @@ const userSchema = mongoose.Schema(
   { timestamps: true }
 );
 
-userSchema.methods.matchPassword = async function (enteredPassword) {
-  return await bcrypt.compare(enteredPassword, this.password);
-};
+// userSchema.methods.matchPassword = async function (enteredPassword) {
+//   return await bcrypt.compare(enteredPassword, this.password);
+// };
 
 const Users = mongoose.model("Users", userSchema);
 

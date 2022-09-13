@@ -7,6 +7,7 @@ import CheckoutBreadcrumbs from "../CheckoutBreadcrumbs";
 import Message from "../Message";
 
 const PlaceOrderPage = () => {
+  // const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -35,12 +36,18 @@ const PlaceOrderPage = () => {
 
   useEffect(() => {
     if (success) {
-      navigate(`/order/${order._id}`);
+      navigate(`/orders/${order._id}`);
     }
-  }, [navigate, success, order._id]);
+    // eslint-disable-next-line
+  }, [navigate, success]);
 
   const placeOrderHandler = () => {
     console.log("order");
+    // console.log(_id);
+    console.log(order._id);
+    // console.log(dispatch);
+    // console.log(orderCreate);
+    console.log(createOrder);
     dispatch(
       createOrder({
         orderItems: cart.cartItems,
@@ -118,7 +125,7 @@ const PlaceOrderPage = () => {
               <ListGroup.Item>
                 <Row>
                   <Col>Items</Col>
-                  <Col>${cart.itemsPrice}</Col>
+                  <Col>{cart.itemsPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>

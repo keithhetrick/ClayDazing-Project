@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Row, Col, ListGroup, Image, Card } from "react-bootstrap";
 import { PayPalButton } from "react-paypal-button-v2";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getOrderDetails, payOrder } from "../../actions/orderActions";
 import { ORDER_PAY_RESET } from "../../constants/orderConstants";
 import Loader from "../Loader";
@@ -11,7 +11,6 @@ import Message from "../Message";
 
 const OrderPage = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const orderId = id;
@@ -35,11 +34,12 @@ const OrderPage = () => {
     );
   }
 
-  // useEffect(() => {
-  //   if (!order || order._id !== orderId) {
-  //     dispatch(getOrderDefails(orderId));
-  //   }
-  // }, [order, orderId]);
+  useEffect(() => {
+    if (!order || order._id !== orderId) {
+      dispatch(getOrderDetails(orderId));
+    }
+    // eslint-disable-next-line
+  }, [order, orderId]);
 
   useEffect(() => {
     const addPayPalScript = async () => {

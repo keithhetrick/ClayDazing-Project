@@ -13,7 +13,7 @@ app.use(
   })
 );
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
-const { protect } = require("./middleware/authMiddleware");
+// const { protect } = require("./middleware/authMiddleware");
 
 app.use((req, res, next) => {
   console.log(`Hello from PORT ${PORT}`);
@@ -30,8 +30,8 @@ require("./routes/products.routes")(app);
 require("./routes/users.routes")(app);
 require("./routes/orders.routes")(app);
 
-app.use(protect);
-console.log(protect);
+// app.use(protect);
+// console.log(protect);
 app.use(notFound);
 app.use(errorHandler);
 

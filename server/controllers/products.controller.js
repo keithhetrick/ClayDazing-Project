@@ -42,7 +42,7 @@ const addProduct = asyncHandler(async (req, res) => {
 const editProduct = (req, res) => {
   Products.updateOne({ _id: req.params.id }, req.body, {
     new: true,
-    // runValidators: true,
+    runValidators: true,
   })
     .then((editProduct) => {
       res.json(editProduct);
@@ -54,7 +54,7 @@ const editProduct = (req, res) => {
 const createProductReview = (req, res) => {
   Products.updateOne({ _id: req.params.id }, req.body, {
     new: true,
-    // runValidators: true,
+    runValidators: true,
   })
     .then((editProduct) => {
       res.json(editProduct);

@@ -67,7 +67,7 @@ export const register = (name, email, password) => async (dispatch) => {
       },
     };
     const { data } = await axios.post(
-      "http://localhost:8000/api/users/login",
+      "http://localhost:8000/api/users",
       { name, email, password },
       config
     );
@@ -82,6 +82,7 @@ export const register = (name, email, password) => async (dispatch) => {
 
     localStorage.setItem("userInfo", JSON.stringify(data));
   } catch (error) {
+    console.log(error.response);
     dispatch({
       type: USER_REGISTER_FAIL,
       payload:

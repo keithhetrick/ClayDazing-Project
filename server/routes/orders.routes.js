@@ -5,8 +5,8 @@ module.exports = (app) => {
   // app.get("/api/users/login", OrdersController.authUsers);
   app.get("/api/orders", OrdersController.getAllOrders);
   app.post("/api/orders", OrdersController.addOrderItems);
-  app.get("/api/orders/:id", OrdersController.getOrderById);
   app.get("/api/orders/myorders", OrdersController.getMyOrders);
+  app.get("/api/orders/:id", OrdersController.getOrderById);
   app.put("/api/orders/:id/pay", OrdersController.updateOrderToPaid);
   // app.put("/api/orders/profile/:id", OrdersController.editUser);
   // app.delete("/api/orders/login/:id", OrdersController.deleteUser);

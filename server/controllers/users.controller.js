@@ -106,16 +106,38 @@ const authUsers = asyncHandler(async (req, res) => {
       token: generateToken(user._id),
     });
   } else {
+    // err;
     res.status(401);
     throw new Error("Invalid email or password");
+    // console.log(err);
   }
 });
 
 const getUserProfile = asyncHandler(async (req, res) => {
-  res.send("Success");
-  // console.log("PLZ WORK");
-  // console.log(req.headers.authorization);
+  const user = await Users.findById(req.user._id);
+
+  if (user) {
+    res.json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      isAdmin: user.isAdmin,
+    });
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
 });
+
+// const getUserProfile = asyncHandler(async (req, res) => {
+//   const user = await Users.findById(req.params.id);
+//   if (user) {
+//     res.json(user);
+//   } else {
+//     res.status(404);
+//     throw new Error("User not found");
+//   }
+// });
 
 module.exports = {
   getUsers,
