@@ -7,7 +7,8 @@ import Product from "../Product";
 import Message from "../Message";
 import Loader from "../Loader";
 import SearchBox from "../SearchBox";
-import ProductCarousel from "../ProductCarousel";
+// import ProductCarousel from "../ProductCarousel";
+import CollectionsListPage from "./CollectionsListPage";
 
 const ProductPage = () => {
   // const { id } = useParams();
@@ -25,7 +26,7 @@ const ProductPage = () => {
   return (
     <main>
       {/* {!keyword && <ProductCarousel />} */}
-      {<ProductCarousel />}
+      {/* {<ProductCarousel />} */}
       <Container>
         <Row style={{ justifyContent: "center" }}>
           <Col
@@ -48,16 +49,19 @@ const ProductPage = () => {
           </Row>
         </Row>
       </Container>
-      <h1 className="text-center py-3">Latest Products</h1>
+      <h2 className="text-center py-3">Latest Products</h2>
+      <Container>{<CollectionsListPage />}</Container>
+      <br />
       <div>
         <SearchBox />
       </div>
+      <h4 className="text-center py-3">Browse All Products</h4>
       {loading ? (
         <Loader />
       ) : error ? (
         <Message variant="danger">{error}</Message>
       ) : (
-        <Row className="box-wra" style={{ textDecoration: "none" }}>
+        <Row className="box-wra">
           {products.map((product) => (
             <Col className="bo" key={product._id} sm={12} md={6} lg={4} xl={3}>
               <Product product={product} />
