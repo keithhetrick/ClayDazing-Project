@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import FormContainer from "../FormContainer";
 import Loader from "../Loader";
 import Message from "../Message";
-import { getUserDetails, register } from "../../actions/userActions";
+import { getUserDetails } from "../../actions/userActions";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
@@ -13,16 +13,25 @@ const UserEditPage = () => {
   const { id } = useParams();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  // const [password, setPassword] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
   const userDetails = useSelector((state) => state.userDetails);
-  const { loading, error, userInfo } = userDetails;
+  const { loading, error, user } = userDetails;
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (!user.name || user._id !== id) {
+      dispatch(getUserDetails(id));
+    } else {
+      setName(user.name);
+      setEmail(user.email);
+      setIsAdmin(user.isAdmin);
+    }
+  }, []);
+  // }, [dispatch,user, id]);
 
   const submitHandler = (e) => {
     e.preventDefault();
