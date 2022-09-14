@@ -187,13 +187,16 @@ const ProductEditPage = () => {
               ></Form.Control>
             </Form.Group>
 
-            <Button
-              type="submit"
-              variant="primary"
-              style={{ marginTop: "20px" }}
-            >
+            <Button type="submit" variant="primary">
               Submit
             </Button>
+            <Link
+              to="/admin/productlist"
+              className="btn btn-dark my-3"
+              style={{ marginTop: "20px", marginLeft: "10px" }}
+            >
+              Cancel
+            </Link>
           </Form>
         )}
       </FormContainer>

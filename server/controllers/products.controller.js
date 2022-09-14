@@ -2,19 +2,17 @@ const Products = require("../models/products.model");
 const asyncHandler = require("express-async-handler");
 
 const getProducts = asyncHandler(async (req, res) => {
-  const pageSize = 2;
-  const page = Number(req.query.pageNumber) || 1;
-  const query = req.query.query
+  // const pageSize = 2;
+  // const page = Number(req.query.pageNumber) || 1;
+  const keyword = req.query.keyword
     ? {
         name: {
-          $regex: req.query.query,
+          $regex: req.query.keyword,
           $options: "i",
         },
       }
     : {};
-  const products = await Products.find({ ...query });
-  // res.status(401);
-  // throw new Error("Not Authorized");
+  const products = await Products.find({ ...keyword });
   res.json(products);
 });
 

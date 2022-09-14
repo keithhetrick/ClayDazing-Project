@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Row, Col, Container } from "react-bootstrap";
+// import { useParams } from "react-router-dom";
+import { Row, Col, Container, Image } from "react-bootstrap";
 import { listProducts } from "../../actions/productActions";
 import Product from "../Product";
 import Message from "../Message";
@@ -10,7 +11,7 @@ import ProductCarousel from "../ProductCarousel";
 
 const ProductPage = () => {
   // const { id } = useParams();
-  // const query = id.query.query;
+  // const keyword = id.params.keyword;
 
   const dispatch = useDispatch();
 
@@ -40,6 +41,13 @@ const ProductPage = () => {
               Handmade happiness for your ears.
             </h6>
           </Col>
+          <Row>
+            <Image
+              src="https://images.squarespace-cdn.com/content/v1/5fdaad402c1ded02b3775ccf/e44290b0-3b31-4a1c-a93b-07d913b9797a/IMG_0604.jpg?format=1500w"
+              thumbnail
+              fluid
+            />
+          </Row>
         </Row>
       </Container>
       <h1 className="text-center py-3">Latest Products</h1>

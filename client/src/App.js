@@ -33,7 +33,6 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/search/:keyword" element={<SearchBox />} />
-            <Route path="/search/" element={<SearchBox />} />
             <Route path="/products" element={<ProductPage />} />
             <Route path="/products/:id" element={<SingleProductPage />} />
             <Route path="/login" element={<LoginPage />} />
