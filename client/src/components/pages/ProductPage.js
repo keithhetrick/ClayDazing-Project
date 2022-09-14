@@ -24,17 +24,13 @@ const ProductPage = () => {
 
   return (
     <main>
+      {/* {!keyword && <ProductCarousel />} */}
       {<ProductCarousel />}
       <Container>
-        <Row>
-          <Col md={3}>
-            {/* <Link className=" btn btn-light my-3" to="/">
-              Go Back
-            </Link> */}
-          </Col>
+        <Row style={{ justifyContent: "center" }}>
           <Col
             className="text-center py-3"
-            md={6}
+            md={12}
             style={{ margin: "0", padding: "0px 12px 12px 12px" }}
           >
             <h6 style={{ fontStyle: "italic", margin: "0" }}>
@@ -42,11 +38,13 @@ const ProductPage = () => {
             </h6>
           </Col>
           <Row>
-            <Image
-              src="https://images.squarespace-cdn.com/content/v1/5fdaad402c1ded02b3775ccf/e44290b0-3b31-4a1c-a93b-07d913b9797a/IMG_0604.jpg?format=1500w"
-              thumbnail
-              fluid
-            />
+            <Col md={12}>
+              <Image
+                src="https://images.squarespace-cdn.com/content/v1/5fdaad402c1ded02b3775ccf/e44290b0-3b31-4a1c-a93b-07d913b9797a/IMG_0604.jpg?format=1500w"
+                thumbnail
+                fluid
+              />
+            </Col>
           </Row>
         </Row>
       </Container>
@@ -59,7 +57,7 @@ const ProductPage = () => {
       ) : error ? (
         <Message variant="danger">{error}</Message>
       ) : (
-        <Row className="box-wra">
+        <Row className="box-wra" style={{ textDecoration: "none" }}>
           {products.map((product) => (
             <Col className="bo" key={product._id} sm={12} md={6} lg={4} xl={3}>
               <Product product={product} />

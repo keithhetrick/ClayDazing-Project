@@ -5,10 +5,11 @@ import { useNavigate } from "react-router-dom";
 import FormContainer from "../FormContainer";
 import Loader from "../Loader";
 import Message from "../Message";
-import { getUserDetails, updateUser } from "../../actions/userActions";
+import { updateUser } from "../../actions/userActions";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { USER_UPDATE_RESET } from "../../constants/userConstants";
+// getUserDetails,
 
 const UserEditPage = () => {
   const { id } = useParams();

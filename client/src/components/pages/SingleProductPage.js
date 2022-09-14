@@ -16,6 +16,7 @@ import Loader from "../Loader";
 import {
   listProductDetails,
   createProductReview,
+  deleteProduct,
 } from "../../actions/productActions";
 import { addToCart } from "../../actions/cartActions";
 import { PRODUCT_CREATE_REVIEW_RESET } from "../../constants/productConstants";
@@ -47,7 +48,7 @@ const SingleProductPage = () => {
       alert("Review Submitted!");
       setRating(0);
       setComment("");
-      // dispatch({ type: PRODUCT_CREATE_REVIEW_RESET });
+      dispatch({ type: PRODUCT_CREATE_REVIEW_RESET });
     }
     if (!product._id || product._id !== id) {
       dispatch(listProductDetails(id));
@@ -69,6 +70,13 @@ const SingleProductPage = () => {
         comment,
       })
     );
+  };
+
+  const deleteHandler = (id) => {
+    if (window.confirm("Are you sure?")) {
+      dispatch(deleteProduct(id));
+      // navigate("/admin/productlist");
+    }
   };
 
   return (
@@ -99,9 +107,40 @@ const SingleProductPage = () => {
                 </ListGroup.Item>
                 <ListGroup.Item>Price: ${product.price}</ListGroup.Item>
                 <ListGroup.Item>
-                  Description: {product.description}
+                  <div style={{ height: "33vh", overflowY: "scroll" }}>
+                    <p>
+                      Thank you so much for taking the time to stop by and look
+                      at my creations!
+                    </p>
+                    <p>
+                      Please note that all pieces are handmade and no piece will
+                      look exactly the same. All dangles, studs, and ball-posts,
+                      are made with stainless steel and are hypoallergenic and
+                      nickel, and lead-free. Safe for sensitive ears!{" "}
+                      <i className="fa-solid fa-heart"></i>
+                    </p>
+                    <p>***CARING FOR YOUR CLAY EARRINGS***</p>
+                    <p>
+                      see <Link to="/faq">FAQ's</Link> for packaging & maintence
+                      questions
+                    </p>
+                    {product.description}
+                    <p>
+                      Handmade earrings are crafted with polymer clay and
+                      stainless steel, hypoallergenic posts.
+                    </p>
+                  </div>
                 </ListGroup.Item>
               </ListGroup>
+              {userInfo && userInfo.isAdmin && (
+                <Link
+                  className="btn btn-secondary my-3"
+                  style={{ width: "100%" }}
+                  to={`/admin/product/${product._id}/edit`}
+                >
+                  Edit
+                </Link>
+              )}
             </Col>
             <Col md={3}>
               <Card>
@@ -163,6 +202,17 @@ const SingleProductPage = () => {
                   </ListGroup.Item>
                 </ListGroup>
               </Card>
+              <div style={{ textAlign: "right" }}>
+                {userInfo && userInfo.isAdmin && (
+                  <Link
+                    onClick={() => deleteHandler(product._id)}
+                    className="btn btn-danger my-3"
+                    to="/admin/productlist"
+                  >
+                    Delete Item
+                  </Link>
+                )}
+              </div>
             </Col>
           </Row>
           <Row>

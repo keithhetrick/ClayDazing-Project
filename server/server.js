@@ -4,7 +4,7 @@ const app = express();
 const dotenv = require("dotenv");
 const cors = require("cors");
 const morgan = require("morgan");
-// app.use(morgan("combined"));
+app.use(morgan("combined"));
 const PORT = process.env.PORT || 8000;
 require("./config/mongoose.config");
 app.use(express.json(), express.urlencoded({ extended: true }));
@@ -42,7 +42,7 @@ dotenv.config();
 // console.log(process.env.PAYPAL_CLIENT_ID);
 
 if (process.env.NODE_ENV === "development") {
-  // app.use(morgan("dev"));
+  app.use(morgan("dev"));
 }
 
 app.listen(PORT, () =>

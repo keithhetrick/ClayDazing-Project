@@ -17,12 +17,13 @@ import ProfilePage from "./components/pages/ProfilePage";
 import PaymentPage from "./components/pages/PaymentPage";
 import PlaceOrderPage from "./components/pages/PlaceOrderPage";
 import OrderPage from "./components/pages/OrderPage";
-import SearchBox from "./components/SearchBox";
+// import SearchBox from "./components/SearchBox";
 import UserListPage from "./components/pages/UserListPage";
 import ProductListPage from "./components/pages/ProductListPage";
 import ProductEditPage from "./components/pages/ProductEditPage";
 import OrderListPage from "./components/pages/OrderListPage";
 import UserEditPage from "./components/pages/UserEditPage";
+import SearchPage from "./components/SearchBox";
 
 function App() {
   return (
@@ -32,7 +33,7 @@ function App() {
         <Container>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/search/:keyword" element={<SearchBox />} />
+            <Route path="/search/:keyword" element={<SearchPage />} />
             <Route path="/products" element={<ProductPage />} />
             <Route path="/products/:id" element={<SingleProductPage />} />
             <Route path="/login" element={<LoginPage />} />

@@ -1,7 +1,7 @@
 const Users = require("../models/users.model");
 const asyncHandler = require("express-async-handler");
 const generateToken = require("../utils/generateToken");
-const protect = require("../middleware/authMiddleware");
+// const protect = require("../middleware/authMiddleware");
 // const bcrypt = require("bcryptjs");
 
 const getUsers = asyncHandler(async (req, res) => {
@@ -90,10 +90,10 @@ const deleteUser = asyncHandler(async (req, res) => {
 const authUsers = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
-  // res.send({
-  //   email,
-  //   password,
-  // });
+  res.send({
+    email,
+    password,
+  });
 
   const user = await Users.findOne({ email });
   // const isMatch = await bcrypt.compare(password, user.password);
@@ -109,11 +109,8 @@ const authUsers = asyncHandler(async (req, res) => {
       token: generateToken(user._id),
     });
   } else {
-    // err;
     res.status(401);
-    // throw new Error("Invalid email or password");
     throw new Error("Invalid email or password");
-    // console.log(err);
   }
 });
 

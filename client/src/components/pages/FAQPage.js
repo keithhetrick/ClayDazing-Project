@@ -12,7 +12,16 @@ import {
 import { Link } from "react-router-dom";
 
 const FAQPage = () => {
-  const [open, setOpen] = useState(false);
+  const [openOne, setOpenOne] = useState(false);
+  const [openTwo, setOpenTwo] = useState(false);
+  const [openThree, setOpenThree] = useState(false);
+  const [openFour, setOpenFour] = useState(false);
+
+  // const toggle = (e) => {
+  //   const value = e.value;
+  //   setOpen(value);
+  // };
+
   const openCallieDanielleShop = (e) => {
     const URL = "https://calliedanielleshop.com/shop/rainbow-earrings";
     window.open(URL);
@@ -32,37 +41,84 @@ const FAQPage = () => {
           <Col className="text-center py-3">
             <h4>FAQ's</h4>
           </Col>
-          {/* <div className="demo__content">
-            <h2 className="demo__heading">What do you need help with?</h2>
-            <div className="demo__elems">
-              <div className="demo__elem demo__elem-1">
-                With advertising online
-              </div>
-              <div className="demo__elem demo__elem-2">With a website</div>
-              <div className="demo__elem demo__elem-3">
-                I need help with both
-              </div>
-              <span className="demo__hover demo__hover-1"></span>
-              <span className="demo__hover demo__hover-2"></span>
-              <span className="demo__hover demo__hover-3"></span>
-              <div className="demo__highlighter">
-                <div className="demo__elems">
-                  <div className="demo__elem">With advertising online</div>
-                  <div className="demo__elem">With a website</div>
-                  <div className="demo__elem">I need help with both</div>
-                </div>
-              </div>
-            </div>
-          </div> */}
           <Button
             className="btn btn-light my-3"
-            onClick={() => setOpen(!open)}
+            onClick={() => setOpenOne(!openOne)}
             aria-controls="example-collapse-text"
-            aria-expanded={open}
+            aria-expanded={openOne}
+          >
+            How should I remove from packaging?
+          </Button>
+          <Collapse in={openOne}>
+            <Container>
+              <Row>
+                <Col className="text-center py-3">
+                  <ListGroup variant="flush">
+                    <ListGroup.Item style={{ background: "none" }}>
+                      Please be gentle as you remove your earrings from their
+                      packaging. Place your thumb on the front of the earring
+                      gently applying pressure, then remove backings and slip
+                      earrings out of the card.
+                    </ListGroup.Item>
+                  </ListGroup>
+                </Col>
+              </Row>
+            </Container>
+          </Collapse>
+          <Button
+            className="btn btn-light my-3"
+            onClick={() => setOpenTwo(!openTwo)}
+            aria-controls="example-collapse-text"
+            aria-expanded={openTwo}
+          >
+            How should I clean?
+          </Button>
+          <Collapse in={openTwo}>
+            <Container>
+              <Row>
+                <Col className="text-center py-3">
+                  <ListGroup variant="flush">
+                    <ListGroup.Item style={{ background: "none" }}>
+                      To clean, wipe with a soft-bristle toothbrush or a damp
+                      towelette. Remove earrings before showering or swimming.
+                    </ListGroup.Item>
+                  </ListGroup>
+                </Col>
+              </Row>
+            </Container>
+          </Collapse>
+          <Button
+            className="btn btn-light my-3"
+            onClick={() => setOpenThree(!openThree)}
+            aria-controls="example-collapse-text"
+            aria-expanded={openThree}
+          >
+            What happens if the back pops off?
+          </Button>
+          <Collapse in={openThree}>
+            <Container>
+              <Row>
+                <Col className="text-center py-3">
+                  <ListGroup variant="flush">
+                    <ListGroup.Item style={{ background: "none" }}>
+                      Try to avoid dropping earrings, as clay can be fragile. In
+                      the case that your earring post on the back pops off, it
+                      can easily be re-applied with Gorilla gel glue.
+                    </ListGroup.Item>
+                  </ListGroup>
+                </Col>
+              </Row>
+            </Container>
+          </Collapse>
+          <Button
+            className="btn btn-light my-3"
+            onClick={() => setOpenFour(!openFour)}
+            aria-controls="example-collapse-text"
+            aria-expanded={openFour}
           >
             see Affiliates
           </Button>
-          <Collapse in={open}>
+          <Collapse in={openFour}>
             <Container>
               <Row>
                 <Col className="text-center py-3">

@@ -5,6 +5,7 @@ import { Form, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { PRODUCT_UPDATE_RESET } from "../../constants/productConstants";
 import {
+  deleteProduct,
   listProductDetails,
   updateProduct,
 } from "../../actions/productActions";
@@ -95,6 +96,13 @@ const ProductEditPage = () => {
     );
   };
 
+  const deleteHandler = (id) => {
+    if (window.confirm("Are you sure?")) {
+      dispatch(deleteProduct(id));
+      // navigate("/admin/productlist");
+    }
+  };
+
   return (
     <div>
       <Link to="/admin/productlist" className="btn btn-light my-3">
@@ -180,23 +188,43 @@ const ProductEditPage = () => {
             <Form.Group controlId="description" style={{ marginTop: "10px" }}>
               <Form.Label>Description</Form.Label>
               <Form.Control
-                type="text"
+                as="textarea"
+                rows={6}
                 placeholder="Enter description"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
+                // style={{ height: "30vh" }}
               ></Form.Control>
             </Form.Group>
 
-            <Button type="submit" variant="primary">
-              Submit
-            </Button>
-            <Link
-              to="/admin/productlist"
-              className="btn btn-dark my-3"
-              style={{ marginTop: "20px", marginLeft: "10px" }}
+            <Form.Group
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
             >
-              Cancel
-            </Link>
+              <Form.Group>
+                <Button type="submit" variant="primary">
+                  Submit
+                </Button>
+                <Link
+                  to="/admin/productlist"
+                  className="btn btn-dark my-3"
+                  style={{ marginTop: "20px", marginLeft: "10px" }}
+                >
+                  Cancel
+                </Link>
+              </Form.Group>
+              <Form.Group>
+                <Button
+                  variant="danger"
+                  onClick={() => deleteHandler(product._id)}
+                >
+                  Delete
+                </Button>
+              </Form.Group>
+            </Form.Group>
           </Form>
         )}
       </FormContainer>

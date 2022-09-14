@@ -1,4 +1,4 @@
-import React from "react";
+// import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 // import { LinkContainer } from "react-router-bootstrap";
 import { Link } from "react-router-dom";
@@ -9,19 +9,36 @@ const HomePage = () => {
       <Container>
         <Row>
           <Col className="text-center py-3">
+            {/* <Col className="text-center py-3 home-body"> */}
             {/* <h6 style={{ fontStyle: "italic" }}>
               Handmade happiness for your ears.
             </h6> */}
+            {/* <span>
+              if (loggedIn){<Alert>already logged in!</Alert>} else{" "}
+              {
+                <Alert>
+                  Sign in <Link to="/login" /> here{" "}
+                </Alert>
+              }
+            </span> */}
+            {/* <main className="home-wrapper">
+              <div class="wrap-image">
+                <img src="https://picsum.photos/200/300" alt=""></img>
+              </div>
+            </main> */}
+
             <div className="home-card">
-              <Link
-                style={{ border: "none" }}
-                variant="secondary"
-                size="sm"
-                className="btn my-3"
-                to="/products"
-              >
-                Welcome!
-              </Link>
+              <div>
+                <Link
+                  style={{ border: "none" }}
+                  variant="secondary"
+                  size="sm"
+                  className="btn my-3"
+                  to="/products"
+                >
+                  Welcome!
+                </Link>
+              </div>
             </div>
           </Col>
           {/* <Image
