@@ -1,10 +1,10 @@
-const path = require("path");
+// const path = require("path");
 const express = require("express");
 const app = express();
 const dotenv = require("dotenv");
 const cors = require("cors");
-const morgan = require("morgan");
-app.use(morgan("combined"));
+// const morgan = require("morgan");
+// app.use(morgan("combined"));
 const PORT = process.env.PORT || 8000;
 require("./config/mongoose.config");
 app.use(express.json(), express.urlencoded({ extended: true }));
@@ -26,12 +26,12 @@ app.get("/api/config/paypal", (req, res) => {
   res.send(process.env.PAYPAL_CLIENT_ID);
 });
 
-app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
+// app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
 require("./routes/products.routes")(app);
 require("./routes/users.routes")(app);
 require("./routes/orders.routes")(app);
-require("./routes/upload.routes")(app);
+// require("./routes/upload.routes")(app);
 
 // app.use(protect);
 // console.log(protect);
@@ -41,9 +41,9 @@ app.use(errorHandler);
 dotenv.config();
 // console.log(process.env.PAYPAL_CLIENT_ID);
 
-if (process.env.NODE_ENV === "development") {
-  app.use(morgan("dev"));
-}
+// if (process.env.NODE_ENV === "development") {
+//   app.use(morgan("dev"));
+// }
 
 app.listen(PORT, () =>
   console.log(`Server is running in ${process.env.NODE_ENV} on PORT ${PORT}`)

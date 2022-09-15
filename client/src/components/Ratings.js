@@ -13,7 +13,7 @@ const Ratings = ({ value, text }) => {
               : "far fa-heart"; //empty star
           return (
             <i
-              key={"Star" + i}
+              key={"Heart" + i}
               style={{ color: "indianred", margin: ".35px" }}
               className={cls}
             />

@@ -75,6 +75,15 @@ const getUserById = asyncHandler(async (req, res) => {
   }
 });
 
+// const getUserById = (req, res) => {
+//   Pets.findOne({ _id: req.params.id })
+//     .then((foundPet) => {
+//       console.log(foundPet);
+//       res.json(foundPet);
+//     })
+//     .catch((err) => res.status(400).json(err));
+// };
+
 const deleteUser = asyncHandler(async (req, res) => {
   const user = await Users.findById(req.params.id);
 
@@ -106,7 +115,7 @@ const authUsers = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
-      token: generateToken(user._id),
+      // token: generateToken(user._id),
     });
   } else {
     res.status(401);

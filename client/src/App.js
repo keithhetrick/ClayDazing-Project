@@ -9,7 +9,7 @@ import AboutPage from "./components/pages/AboutPage";
 import AffiliatesPage from "./components/pages/AffiliatesPage";
 import SingleProductPage from "./components/pages/SingleProductPage";
 import CartPage from "./components/pages/CartPage";
-// import SearchPage from "./components/pages/SearchPage";
+import SearchPage from "./components/pages/SearchPage";
 import ShippingPage from "./components/pages/ShippingPage";
 import RegisterPage from "./components/pages/RegisterPage";
 import LoginPage from "./components/pages/LoginPage";
@@ -23,7 +23,7 @@ import ProductListPage from "./components/pages/ProductListPage";
 import ProductEditPage from "./components/pages/ProductEditPage";
 import OrderListPage from "./components/pages/OrderListPage";
 import UserEditPage from "./components/pages/UserEditPage";
-import SearchPage from "./components/SearchBox";
+// import SearchPage from "./components/SearchPage";
 
 function App() {
   return (
@@ -54,7 +54,7 @@ function App() {
             />
             <Route path="/ratings" />
             <Route path="/wishlist" />
-            {/* <Route path="/search" element={<SearchPage />} /> */}
+            <Route path="/search" element={<SearchPage />} />
             <Route path="/shipping" element={<ShippingPage />} />
             <Route path="/faq" element={<FAQPage />} />
             <Route path="/affiliates" element={<AffiliatesPage />} />
