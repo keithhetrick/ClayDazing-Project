@@ -8,7 +8,7 @@ import Message from "../Message";
 import Loader from "../Loader";
 import SearchBox from "../SearchBox";
 // import ProductCarousel from "../ProductCarousel";
-import CollectionsListPage from "./CollectionsListPage";
+// import CollectionsListPage from "./CollectionsListPage";
 
 const ProductPage = () => {
   // const { id } = useParams();
@@ -50,7 +50,7 @@ const ProductPage = () => {
         </Row>
       </Container>
       <h2 className="text-center py-3">Latest Products</h2>
-      <Container>{<CollectionsListPage />}</Container>
+      {/* <Container>{<CollectionsListPage />}</Container> */}
       <br />
       <div>
         <SearchBox />
