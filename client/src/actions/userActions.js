@@ -67,6 +67,7 @@ export const logout = () => (dispatch) => {
   dispatch({ type: USER_LIST_RESET });
 };
 
+// Create User
 export const register = (name, email, password) => async (dispatch) => {
   try {
     dispatch({
@@ -104,6 +105,7 @@ export const register = (name, email, password) => async (dispatch) => {
   }
 };
 
+// Get Single User Details
 export const getUserDetails = (id) => async (dispatch, getState) => {
   try {
     dispatch({
@@ -130,6 +132,8 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
     });
   } catch (error) {
     console.log(error.response);
+    console.log(`http://localhost:8000/api/users/${id}`);
+    console.log(` Id is: ${id}`);
     dispatch({
       type: USER_DETAILS_FAIL,
       payload:
@@ -140,6 +144,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
   }
 };
 
+// Update User
 export const updateUserProfile = (user) => async (dispatch, getState) => {
   try {
     dispatch({

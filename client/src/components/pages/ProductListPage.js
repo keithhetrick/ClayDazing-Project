@@ -42,14 +42,14 @@ const ProductListPage = () => {
   useEffect(() => {
     dispatch({ type: PRODUCT_CREATE_RESET });
 
-    if (!userInfo.isAdmin) {
-      navigate("/login");
-    }
-    if (successCreate) {
-      navigate(`/admin/product/${createdProduct._id}/edit`);
-    } else {
-      dispatch(listProducts());
-    }
+    // if (!userInfo.isAdmin) {
+    //   navigate("/login");
+    // }
+    // if (successCreate) {
+    //   // navigate(`/admin/product/${createdProduct._id}/edit`);
+    // } else {
+    //   dispatch(listProducts());
+    // }
   }, [
     dispatch,
     navigate,
@@ -62,12 +62,12 @@ const ProductListPage = () => {
   const deleteHandler = (id) => {
     if (window.confirm("Are you sure?")) {
       dispatch(deleteProduct(id));
-      // navigate("/admin/productlist");
+      navigate("/admin/productlist");
     }
   };
 
   const createProductHandler = () => {
-    // console.log(createProductHandler);
+    console.log(createProductHandler);
     dispatch(createProduct());
   };
 

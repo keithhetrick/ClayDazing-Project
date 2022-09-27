@@ -3,7 +3,7 @@ const UsersController = require("../controllers/users.controller");
 
 module.exports = (app) => {
   // THIS IS THE PROBLEM LINE
-  app.get("/api/users/:id", UsersController.getUserProfile);
+  app.get("/api/users/profile/:id", UsersController.getUserProfile);
 
   app.post("/api/users/login", UsersController.authUsers);
   app.get("/api/users", UsersController.getUsers);

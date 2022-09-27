@@ -38,12 +38,12 @@ const ProfilePage = () => {
       navigate("/login");
     } else {
       if (!user || !user.name || success) {
-        console.log(user);
+        console.log(`User is : ${user}`);
         dispatch({ type: USER_UPDATE_PROFILE_RESET });
-        dispatch(getUserDetails("profile"));
+        // dispatch(getUserDetails("profile"));
         dispatch(listMyOrders());
       } else {
-        // console.log(user.name);
+        console.log(user.name);
         setName(user.name);
         setEmail(user.email);
       }

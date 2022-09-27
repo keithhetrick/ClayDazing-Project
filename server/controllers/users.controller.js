@@ -4,11 +4,13 @@ const generateToken = require("../utils/generateToken");
 // const protect = require("../middleware/authMiddleware");
 // const bcrypt = require("bcryptjs");
 
+// Get All Users
 const getUsers = asyncHandler(async (req, res) => {
   const users = await Users.find({});
   res.json(users);
 });
 
+// Create User
 const addUsers = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
 
@@ -40,6 +42,7 @@ const addUsers = asyncHandler(async (req, res) => {
   }
 });
 
+// Update User
 const updateUser = asyncHandler(async (req, res) => {
   const user = await Users.findById(req.params.id);
 
@@ -65,6 +68,7 @@ const updateUser = asyncHandler(async (req, res) => {
   }
 });
 
+// Get Single User
 const getUserById = asyncHandler(async (req, res) => {
   const user = await Users.findById(req.params.id).select("-password");
   if (user) {
@@ -75,15 +79,7 @@ const getUserById = asyncHandler(async (req, res) => {
   }
 });
 
-// const getUserById = (req, res) => {
-//   Pets.findOne({ _id: req.params.id })
-//     .then((foundPet) => {
-//       console.log(foundPet);
-//       res.json(foundPet);
-//     })
-//     .catch((err) => res.status(400).json(err));
-// };
-
+// Delete User
 const deleteUser = asyncHandler(async (req, res) => {
   const user = await Users.findById(req.params.id);
 
@@ -96,6 +92,7 @@ const deleteUser = asyncHandler(async (req, res) => {
   }
 });
 
+// Login & Reg detail - Auth
 const authUsers = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
@@ -104,6 +101,7 @@ const authUsers = asyncHandler(async (req, res) => {
     password,
   });
 
+  // Other users
   const user = await Users.findOne({ email });
   // const isMatch = await bcrypt.compare(password, user.password);
 
@@ -123,6 +121,7 @@ const authUsers = asyncHandler(async (req, res) => {
   }
 });
 
+// Get Single user
 const getUserProfile = asyncHandler(async (req, res) => {
   const user = await Users.findById(req.user._id);
 

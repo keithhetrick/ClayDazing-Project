@@ -1,6 +1,7 @@
 const Products = require("../models/products.model");
 const asyncHandler = require("express-async-handler");
 
+// Get All Products
 const getProducts = asyncHandler(async (req, res) => {
   // const pageSize = 2;
   // const page = Number(req.query.pageNumber) || 1;
@@ -16,6 +17,7 @@ const getProducts = asyncHandler(async (req, res) => {
   res.json(products);
 });
 
+// Get Single Product
 const getProductById = asyncHandler(async (req, res) => {
   const product = await Products.findById(req.params.id);
   if (product) {
@@ -26,6 +28,7 @@ const getProductById = asyncHandler(async (req, res) => {
   }
 });
 
+// Create new Product w default settings
 const createProduct = asyncHandler(async (req, res) => {
   const product = new Products({
     name: "Sample name",
@@ -43,6 +46,7 @@ const createProduct = asyncHandler(async (req, res) => {
   res.status(201).json(createdProduct);
 });
 
+// Update Product
 const updateProduct = asyncHandler(async (req, res) => {
   const { name, price, description, image, brand, category, countInStock } =
     req.body;
@@ -66,6 +70,7 @@ const updateProduct = asyncHandler(async (req, res) => {
   }
 });
 
+// Delete Product
 const deleteProduct = asyncHandler(async (req, res) => {
   const product = await Products.findById(req.params.id);
   if (product) {
@@ -77,6 +82,7 @@ const deleteProduct = asyncHandler(async (req, res) => {
   }
 });
 
+// Create Product Review
 const createProductReview = asyncHandler(async (req, res) => {
   const { rating, comment } = req.body;
 
@@ -113,6 +119,7 @@ const createProductReview = asyncHandler(async (req, res) => {
   }
 });
 
+// Get Top Products for Product Carousel
 const getTopProducts = asyncHandler(async (req, res) => {
   const products = await Products.find({}).sort({ rating: -1 }).limit(3);
 
