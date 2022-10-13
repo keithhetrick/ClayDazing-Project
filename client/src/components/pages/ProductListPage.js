@@ -5,7 +5,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import {
-  listProducts,
+  // listProducts,
   createProduct,
   deleteProduct,
 } from "../../actions/productActions";
