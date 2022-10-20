@@ -2,10 +2,11 @@ import React, { useEffect } from "react";
 import { Button, Table, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
+// import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import {
-  // listProducts,
+  listProducts,
   createProduct,
   deleteProduct,
 } from "../../actions/productActions";
@@ -42,14 +43,14 @@ const ProductListPage = () => {
   useEffect(() => {
     dispatch({ type: PRODUCT_CREATE_RESET });
 
-    // if (!userInfo.isAdmin) {
-    //   navigate("/login");
-    // }
-    // if (successCreate) {
-    //   // navigate(`/admin/product/${createdProduct._id}/edit`);
-    // } else {
-    //   dispatch(listProducts());
-    // }
+    if (!userInfo.isAdmin) {
+      navigate("/login");
+    }
+    if (successCreate) {
+      navigate(`/admin/product/${createdProduct._id}/edit`);
+    } else {
+      dispatch(listProducts());
+    }
   }, [
     dispatch,
     navigate,

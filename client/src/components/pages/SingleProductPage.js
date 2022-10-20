@@ -75,15 +75,25 @@ const SingleProductPage = () => {
   const deleteHandler = (id) => {
     if (window.confirm("Are you sure?")) {
       dispatch(deleteProduct(id));
-      // navigate("/admin/productlist");
+      navigate("/admin/productlist");
     }
   };
 
   return (
     <div>
-      <Link className="btn btn-light my-3" to="/products">
-        Go Back
-      </Link>
+      <Row>
+        <Col
+          md={6}
+          style={{ display: "flex", justifyContent: "space-between" }}
+        >
+          <Link className="btn btn-light my-3" to="/products">
+            Go Back
+          </Link>
+          <Button className="btn my-3" variant="primary" md={3}>
+            Next
+          </Button>
+        </Col>
+      </Row>
       {loading ? (
         <Loader />
       ) : error ? (

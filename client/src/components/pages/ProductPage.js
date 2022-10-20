@@ -61,9 +61,9 @@ const ProductPage = () => {
       ) : error ? (
         <Message variant="danger">{error}</Message>
       ) : (
-        <Row className="box-wra">
+        <Row className="box-wrap">
           {products.map((product) => (
-            <Col className="bo" key={product._id} sm={12} md={6} lg={4} xl={3}>
+            <Col className="box" key={product._id} sm={12} md={6} lg={4} xl={3}>
               <Product product={product} />
             </Col>
           ))}
