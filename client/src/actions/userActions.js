@@ -111,11 +111,9 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
     dispatch({
       type: USER_DETAILS_REQUEST,
     });
-
     const {
       userLogin: { userInfo },
     } = getState();
-
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -123,6 +121,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
       },
     };
     const { data } = await axios.get(
+      // <--- This is the line that is causing the error
       `http://localhost:8000/api/users/${id}`,
       config
     );
@@ -144,7 +143,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
   }
 };
 
-// Update User
+// Update User Profile
 export const updateUserProfile = (user) => async (dispatch, getState) => {
   try {
     dispatch({

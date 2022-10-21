@@ -90,7 +90,7 @@ const SingleProductPage = () => {
             Go Back
           </Link>
           <Button className="btn my-3" variant="primary" md={3}>
-            Next
+            <i className="fas fa-shopping-cart"></i> Next
           </Button>
         </Col>
       </Row>
